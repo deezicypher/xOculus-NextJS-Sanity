@@ -12,8 +12,8 @@ const HeroBanner = ({heroBanner}) => {
           {heroBanner.smallText}
         </p>
         <h3>{heroBanner.midText}</h3>
-        <br/>
-        <h1>{heroBanner.largeText2}</h1>
+        <br/>     
+        <h1>{heroBanner.largeText1}</h1> 
         <img src={urlFor(heroBanner.image[0]).url()} alt='' className='hero-banner-image' />
 
         <div>

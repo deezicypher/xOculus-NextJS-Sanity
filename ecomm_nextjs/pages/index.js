@@ -1,15 +1,14 @@
 import React from 'react'
-import {HeroBanner, Footer, Product} from '../components/Index.js'
+import {HeroBanner, Footer, Product, FooterBanner} from '../components/Index.js'
 import {client, urlFor} from '../utils/client.js'
 
 
 const Home = ({products,bannerData}) => {
   return (
    <div className='main-container'>
-   <HeroBanner heroBanner={bannerData.length && bannerData[0]}/>
+   <HeroBanner heroBanner={bannerData.length && bannerData[1]}/>
 
 
-   
     {products.map(product => (
       //console.log(urlFor(product.image).url())
       //console.log(urlFor(product.image[0]).url())
@@ -28,7 +27,7 @@ const Home = ({products,bannerData}) => {
     ))}
    </div>
 
-   <Footer />
+   <FooterBanner footerData={bannerData.length && bannerData[0]}/>
    </div>
   )
 }
@@ -37,8 +36,9 @@ export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
 
-  const bannerQuery =  `*[_type == "banner"]`
+  const bannerQuery =  `*[_type == "banner" ]`
   const bannerData = await client.fetch(bannerQuery);
+
 
   return {
     props: {products,bannerData}

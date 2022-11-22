@@ -1,5 +1,5 @@
-export { default as FooterBanner } from './Footer.js';
-export { default as Footer } from './FooterBanner.js';
+export { default as FooterBanner } from './FooterBanner.js';
+export { default as Footer } from './Footer.js';
 export { default as Header } from './Header.js';
 export { default as Layout } from './Layout.js';
 export { default as Navbar } from './Navbar.js';
