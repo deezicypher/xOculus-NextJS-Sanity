@@ -1,5 +1,5 @@
 import React from 'react'
-import {HeroBanner, Footer} from '../components/Index.js'
+import {HeroBanner, Footer, Product} from '../components/Index.js'
 import {client, urlFor} from '../utils/client.js'
 
 
@@ -9,19 +9,22 @@ const Home = ({products,bannerData}) => {
    <HeroBanner heroBanner={bannerData.length && bannerData[0]}/>
 
 
-    {console.log(products)}
+   
     {products.map(product => (
-      console.log(urlFor(product.image).url())
-    )) 
+      //console.log(urlFor(product.image).url())
+      //console.log(urlFor(product.image[0]).url())
+      <></>
+    ))
     }
    <div className='products-heading'>
-    <h2 >Title</h2> 
-    <p>Title</p>
+    <h2 >Explore the world of Oculus</h2> 
+    <br/>
+    <p>Discover</p>
    </div>
 
    <div className='products-container'>
-    {['p1','p2','p3','p4','p5','p6','p'].map(product => (
-      product
+    {products.map(product => (
+      <Product product={product}/>
     ))}
    </div>
 
