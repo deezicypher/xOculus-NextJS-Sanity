@@ -4,17 +4,20 @@ import { urlFor } from '../utils/client'
 
 const HeroBanner = ({heroBanner}) => {
   return (
-
+    
     <div className='hero-banner-container'>
+ 
       <div>
-        <p className='beats-solo'>
+        <p>
           {heroBanner.smallText}
         </p>
         <h3>{heroBanner.midText}</h3>
-        <img src={urlFor(heroBanner.image).url()} alt='' className='hero-banner-image' />
+        <br/>
+        <h1>{heroBanner.largeText2}</h1>
+        <img src={urlFor(heroBanner.image[0]).url()} alt='' className='hero-banner-image' />
 
         <div>
-          <Link href='/product/ID'>
+          <Link href={`/product/${heroBanner.product}`}>
             <button type='button'>
               {heroBanner.buttonText}
             </button>
