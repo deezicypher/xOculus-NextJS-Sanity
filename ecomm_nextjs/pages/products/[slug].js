@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {client, urlFor } from '../../utils/client';
-import {AiFillMinusCircle,AiFillStar, AiFillPlusCircle} from 'react-icons/ai';
+import {AiOutlineMinus,AiFillStar, AiOutlinePlus} from 'react-icons/ai';
 import Product from '../../components/Product';
 import { useStateContext } from '../../context/stateContext';
 import toast from 'react-hot-toast';
@@ -52,13 +52,13 @@ const ProductDetails = ({product,products}) => {
                                 <p className='quantity-desc'>
                                     <span className='minus'
                                     onClick={decQty}
-                                    ><AiFillMinusCircle/></span>
+                                    ><AiOutlineMinus/></span>
                                     <span className='num'
                                     onClick=""
                                     >{qty}</span>
                                     <span className='plus'
                                     onClick={incQty}
-                                    ><AiFillPlusCircle/></span>
+                                    ><AiOutlinePlus/></span>
                                 </p>
                             </div>
                             <div className='buttons'>

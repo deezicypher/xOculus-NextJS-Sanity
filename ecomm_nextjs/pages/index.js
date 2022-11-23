@@ -1,5 +1,5 @@
 import React from 'react'
-import {HeroBanner, Footer, Product, FooterBanner} from '../components/Index.js'
+import {HeroBanner, Footer, Product, FooterBanner} from '../components/index.js'
 import {client, urlFor} from '../utils/client.js'
 
 
@@ -22,8 +22,8 @@ const Home = ({products,bannerData}) => {
    </div>
 
    <div className='products-container'>
-    {products.map(product => (
-      <Product product={product}/>
+    {products.map((product,i) => (
+      <Product key={i} product={product}/>
     ))}
    </div>
 
