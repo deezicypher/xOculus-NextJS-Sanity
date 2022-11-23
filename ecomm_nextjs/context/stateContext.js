@@ -14,6 +14,15 @@ export const StateContext = ({children}) => {
     let foundProduct;
     let index;
 
+    const removeFromCart = (product) => {
+        foundProduct = cartItems.find(item => item._id === product._id);
+        const newCartItems = cartItems.filter(item => item._id !== product._id)
+
+        setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.quantity * foundProduct.price);
+        setTotalQuantities(prevTotalQty => prevTotalQty - foundProduct.quantity);
+        setCartItems(newCartItems)
+    }
+
     const updateCartItemQuantity = (id, value) => {
         foundProduct = cartItems.find( item => item._id === id )
         index = cartItems.findIndex(item => item._id === id)
@@ -83,7 +92,8 @@ export const StateContext = ({children}) => {
                 decQty,
                 onAdd,
                 setShowCart,
-                updateCartItemQuantity
+                updateCartItemQuantity,
+                removeFromCart
             }}
         >
             {children}

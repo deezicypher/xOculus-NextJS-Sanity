@@ -6,7 +6,7 @@ const HeroBanner = ({heroBanner}) => {
   return (
     
     <div className='hero-banner-container'>
- 
+      <div className='overlay-bg'>
       <div>
         <p>
           {heroBanner.smallText}
@@ -28,6 +28,7 @@ const HeroBanner = ({heroBanner}) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

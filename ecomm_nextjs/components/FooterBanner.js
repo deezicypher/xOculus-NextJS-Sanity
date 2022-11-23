@@ -6,6 +6,7 @@ import { urlFor } from '../utils/client';
 const FooterBanner = ({footerData:{image,smallText,midText,largeText1,detail, discount}}) => {
   return (
     <div className='footer-banner-container'>
+      <div className='overlay-bg'>
       <div className='banner-desc'>
         <div className='left'>
             <p>{smallText}</p>
@@ -22,6 +23,7 @@ const FooterBanner = ({footerData:{image,smallText,midText,largeText1,detail, di
         src={urlFor(image[0]).url()}
         className='footer-banner-image'
         />
+    </div>
     </div>
     </div>
   )

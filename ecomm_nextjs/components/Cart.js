@@ -4,12 +4,12 @@ import { urlFor } from '../utils/client';
 import { useStateContext } from '../context/stateContext';
 import {BiArrowBack} from 'react-icons/bi';
 import {FiShoppingCart} from 'react-icons/fi';
-import {AiOutlineMinus,AiOutlinePlus,AiOutlineDelete} from 'react-icons/ai';
+import {AiFillMinusCircle,AiFillPlusCircle,AiOutlineDelete} from 'react-icons/ai';
 
 
 const Cart = () => {
   const cartRef = useRef();
-  const {totalPrice,setShowCart,totalQuantities, cartItems,updateCartItemQuantity } = useStateContext();
+  const {totalPrice,setShowCart,totalQuantities, cartItems,updateCartItemQuantity,removeFromCart } = useStateContext();
 
 
   return (
@@ -58,18 +58,20 @@ const Cart = () => {
                                 <p className='quantity-desc'> 
                                     <span className='minus'
                                     onClick={()=> updateCartItemQuantity(product._id, 'dec')}
-                                    ><AiOutlineMinus/></span>
+                                    ><AiFillMinusCircle/></span>
                                     <span className='num'
                                    
                                     >{product.quantity}</span>
                                     <span 
+                                     className='plus'
                                      onClick={()=> updateCartItemQuantity(product._id, 'inc')}
-                                    ><AiOutlinePlus/></span>
+                                    ><AiFillPlusCircle/></span>
                                 </p>
               </div>
               <button 
                 type='button'
                 className='remove-item'
+                onClick={() => removeFromCart(product)}
                 >
                     <AiOutlineDelete/>
                 </button>
