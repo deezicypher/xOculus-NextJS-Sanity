@@ -417,6 +417,7 @@ padding: 30px 65px;
 .btn-container{
   width: 400px;
   margin: auto;
+  margin-top: 10px;
 }
 .btn{
   width: 100%;

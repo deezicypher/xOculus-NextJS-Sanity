@@ -4,12 +4,12 @@ import { urlFor } from '../utils/client';
 import { useStateContext } from '../context/stateContext';
 import {BiArrowBack} from 'react-icons/bi';
 import {FiShoppingCart} from 'react-icons/fi';
-import {AiOutlineMinus,AiOutlinePlus} from 'react-icons/ai';
+import {AiOutlineMinus,AiOutlinePlus,AiOutlineDelete} from 'react-icons/ai';
 
 
 const Cart = () => {
   const cartRef = useRef();
-  const {totalPrice,setShowCart,totalQuantities, cartItems } = useStateContext();
+  const {totalPrice,setShowCart,totalQuantities, cartItems,updateCartItemQuantity } = useStateContext();
 
 
   return (
@@ -57,22 +57,40 @@ const Cart = () => {
               <div>
                                 <p className='quantity-desc'> 
                                     <span className='minus'
-                                    onClick=""
+                                    onClick={()=> updateCartItemQuantity(product._id, 'dec')}
                                     ><AiOutlineMinus/></span>
                                     <span className='num'
-                                    onClick=""
-                                    >0</span>
+                                   
+                                    >{product.quantity}</span>
                                     <span 
-                                    onClick=""
+                                     onClick={()=> updateCartItemQuantity(product._id, 'inc')}
                                     ><AiOutlinePlus/></span>
                                 </p>
-                        
-                            </div>
+              </div>
+              <button 
+                type='button'
+                className='remove-item'
+                >
+                    <AiOutlineDelete/>
+                </button>
             </div>
             </div>
           </div>
         )))}
       </div>
+      {cartItems.length >= 1 && (
+        <div className='cart-bottom'>
+          <div className='total'>
+            <h3>Subtotal: </h3>
+            <h3>${totalPrice}</h3>
+            </div>
+            <div className='btn-container'>
+              <button className='btn' type='button'>
+                    Check Out With Stripe
+              </button>
+              </div>
+        </div>
+      )}
       </div>
     </div>
   )
