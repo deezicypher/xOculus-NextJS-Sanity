@@ -296,6 +296,25 @@ text-align: end;
   font-size: 14px;
   font-weight: 300;
 }
+
+.spinner-wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  align-items: center;
+}
+
+.spinner{
+  position: absolute;
+}
 .cart-wrapper{
   width: 100vw;
   background: rgba(0, 0, 0, 0.5);
