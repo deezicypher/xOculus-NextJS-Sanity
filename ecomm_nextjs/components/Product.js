@@ -6,7 +6,7 @@ const Product = ({product: {image, name, slug, price}}) => {
   return (
    <div>
     <Link href={`products/${slug.current}`}>
-      <div className='product-card'>
+      <div className='product-card' key={slug}>
         <img 
         src={urlFor(image[0]).url()}
         width={250}

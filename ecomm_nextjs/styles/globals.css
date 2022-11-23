@@ -136,7 +136,7 @@ width: 100%;
 
 .hero-banner-container{
   padding: 100px 40px;
-  background-color:  #b0ddda;
+  background-color:  #b0ddda ;
   border-radius: 15px;
   position: relative;
   height: 500px;
@@ -442,15 +442,14 @@ padding: 30px 65px;
 
 .product-detail-image{
   border-radius: 15px;
-   background-color: #ebebeb;
-
-  width: 400px;
-  height: 400px;
+  background-color: #ebebeb;
+  width: 550px;
+  height: 500px;
   cursor: pointer;
   transition: .3s ease-in-out;
 }
 .product-detail-image:hover{
-  background-color: #f02d34;
+  background-color: #b0ddce;
 
 }
 .small-images-container{
@@ -467,11 +466,12 @@ padding: 30px 65px;
 }
 
 .selected-image{
-  background-color:#f02d34;
+  background-color: #b0ddce;
 }
 .reviews{
-  color: #f02d34;
+  color: #1d66c1;
   margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -482,6 +482,7 @@ padding: 30px 65px;
 }
 .product-detail-desc p{
   margin-top: 10px;
+  font-weight: light;
 }
 .reviews p{
   color: #324d67;
@@ -491,7 +492,7 @@ padding: 30px 65px;
   font-weight: 700 ;
   font-size: 26px;
   margin-top: 30px;
-  color:#f02d34;
+  color: rgb(49 168 49);
 }
 .price .old-price, .product-price .old-price, .price .old-price{
   color: gray;
@@ -507,17 +508,17 @@ padding: 30px 65px;
   display: flex;
   gap: 30px;
 }
-.buttons .add-to-cart{
+.buttons .add-to-cart {
   padding: 10px 20px;
-  border: 1px solid #f02d34 ;
+  border: 1px solid #8beecd;
   margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
   background-color: white;
-  color: #f02d34;
+  color: #64b79b;
   cursor: pointer;
   width: 200px;
-   transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
 .buttons .add-to-cart:hover{
@@ -527,7 +528,7 @@ padding: 30px 65px;
   width: 200px;
 
   padding: 10px 20px;
-  background-color: #f02d34;
+  background-color: #1d66c1;
   color: white;
   border: none;
   margin-top: 40px;
@@ -562,17 +563,17 @@ padding: 6px;
 
 }
 
-.maylike-products-wrapper{
+.similar-products-wrapper{
   margin-top: 120px;
 }
-.maylike-products-wrapper h2{
+.similar-products-wrapper h2{
   text-align: center;
   margin: 50px;
   color: #324d67;
 
   font-size: 28px;
 }
-.maylike-products-container{
+.similar-products-container{
   display: flex;
   justify-content: center;
   gap: 15px;
