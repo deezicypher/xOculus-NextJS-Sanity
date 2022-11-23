@@ -5,13 +5,31 @@ import { useStateContext } from '../context/stateContext';
 import {BiArrowBack} from 'react-icons/bi';
 import {FiShoppingCart} from 'react-icons/fi';
 import {AiFillMinusCircle,AiFillPlusCircle,AiOutlineDelete} from 'react-icons/ai';
+import getStripePromise from '../utils/getStripe';
+import toast from 'react-hot-toast';
 
 
 const Cart = () => {
   const cartRef = useRef();
   const {totalPrice,setShowCart,totalQuantities, cartItems,updateCartItemQuantity,removeFromCart } = useStateContext();
 
+  const handleCheckOut = async () => {
+      const stripe = await getStripePromise();
+      const response = await fetch('/api/stripe/',{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({cartItems}),
+      })
 
+      if(response.statusCode === 500) return;
+
+      const data = await response.json();
+      toast.loading('Redirecting...');
+      stripe.redirectToCheckout({sessionId: data.id})
+
+  }
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
@@ -87,7 +105,7 @@ const Cart = () => {
             <h3>${totalPrice}</h3>
             </div>
             <div className='btn-container'>
-              <button className='btn' type='button'>
+              <button className='btn' type='button' onClick={handleCheckOut}>
                     Check Out With Stripe
               </button>
               </div>
