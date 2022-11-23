@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className='navbar-container'>
       <p className='logo'>
         <Link href='/'>
-       <Image src='/logo.png' alt='' width="25" height="16" />
+       <Image src='/logo.png' alt='' width="35" height="25" />
        {" "}xOculus
         </Link>
       </p>
