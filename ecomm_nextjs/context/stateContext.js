@@ -1,7 +1,7 @@
 import React,{createContext, useContext, useState, useEffect} from "react";
 import {toast} from 'react-hot-toast';
 import Cookies from 'js-cookie';
-import { client } from "../utils/client";
+
 
 
 
@@ -60,19 +60,14 @@ export const StateContext = ({children}) => {
         )
     }
 
-    const productInfo = async (id) => {
-        const query = `*[_type == 'product' &&  _id == '${id}'] [0]`
-        const product = await client.fetch(query)
-        console.log(product.slug, product.stock)
-
-    }
+ 
     
     const onAdd = (qty, product) => {
         
         const checkProductInCart = cartItems.find(item => item._id === product._id)
  
       
-       {/* if (checkProductInCart){
+        if (checkProductInCart){
             setTotalPrice(prevTotalPrice => prevTotalPrice + qty * product.price);
             setTotalQuantities(prevTotalQty => prevTotalQty + qty)
 
@@ -92,7 +87,7 @@ export const StateContext = ({children}) => {
             
             setCartItems([...cartItems, {...product}])
         }
-        */}
+  
         toast.success(`${qty} ${product.name} added to cart`) 
     }
 
