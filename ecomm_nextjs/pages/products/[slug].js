@@ -10,9 +10,13 @@ import toast from 'react-hot-toast';
 const ProductDetails = ({product,products}) => {
     const {name,price,image,detail} = product;
     const [index, setIndex] = useState(0);
-    const {decQty, incQty, qty, onAdd} = useStateContext();
+    const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
 
   
+    const handleBuyNow = () => {
+        onAdd(qty, product);
+        setShowCart(true);
+    }
 
     return (
         <div>
@@ -73,7 +77,7 @@ const ProductDetails = ({product,products}) => {
                                 <button 
                                 type="button"
                                 className='buy-now'
-                                onClick=''
+                                onClick={handleBuyNow}
                                 >
                                 Buy Now
                                 </button>
