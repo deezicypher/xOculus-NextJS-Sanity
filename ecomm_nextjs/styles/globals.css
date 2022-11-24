@@ -65,7 +65,7 @@ width: 100%;
     margin-left: 6px;
 }
 .logo{
-  color: #324d67;
+  color: #1d3244;
   font-size: 25px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -109,6 +109,9 @@ width: 100%;
   font-weight: light;
   color: #344854;
   word-spacing: 5px;
+}
+.total h3{
+  color: #344854;
 }
 
 .search-wrapper{
@@ -199,6 +202,7 @@ width: 100%;
   width: 100%;
 }
 .product-card{
+  margin-top: 20px;
  cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
@@ -225,7 +229,7 @@ width: 100%;
 .product-price{
   font-weight: 800;
   margin-top: 6px;
-  color: black;
+  color: #091914;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -277,7 +281,7 @@ width: 100%;
 .hero-banner-container h1{
   font-size: 4rem;
   margin-top: 4px;
-  color: #d6dadd;
+  color: #67bfa1;
 }
 .hero-banner-container p{
   font-size: 14px;
