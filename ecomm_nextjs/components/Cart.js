@@ -33,16 +33,16 @@ const Cart = () => {
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
-        <button 
-        type="button" 
-        className="cart-heading"
+        <div className='cart-heading'>
+        <div
         onClick={() => setShowCart(false)}
         >
           <BiArrowBack/>{"  "}
+          </div>
           <span className='heading'>Your Cart</span>
           <span className='cart-num-items'>({totalQuantities} items) </span>
-
-        </button>
+          </div>
+   
         {cartItems.length < 1 && (
           <div className='empty-cart'>
               <FiShoppingCart size={200}/>

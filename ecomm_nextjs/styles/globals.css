@@ -70,6 +70,95 @@ width: 100%;
   font-weight: 700;
   margin-bottom: 10px;
 }
+.action-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  gap: 35px;
+}
+.search-icon{
+  font-size: 20px;
+  transition: transform .4s ease;
+}
+
+.search-heading{
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  gap: 2px;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+}
+.search-sec{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 50px;
+  margin-left: 20px;
+
+}
+.heading{
+  margin-left: 10px;
+  font-size: 1.875rem;
+  font-weight: light;
+  color: #344854;
+  word-spacing: 5px;
+}
+
+.search-wrapper{
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  /* will-change: transform; */
+  transition: all 1s ease-in-out;
+
+}
+.search-container{
+  height: 100vh;
+  width: 50vw;
+  background-color: white;
+  float: right;
+  padding: 40px 10px;
+  position: relative;
+  
+}
+.search-container .search-input{
+  border: 1px solid #d9dde1;
+  padding: 20px;
+  width: 100%;
+  align-self: center;
+
+}
+.search-input:focus-visible {
+  border: 1px solid #d9dde1;
+}
+.search-input::placeholder {
+  color: #67798a;
+  font-size: 15px;
+}
+
+.search-content{
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-left: 10px;
+  justify-content: center;
+}
+
+.cancel-search{
+  font-weight: light;
+  color: #344854;
+}
 .cart-icon{
   font-size: 25px;
   color: gray;
@@ -771,6 +860,22 @@ padding: 6px;
   .cart-container{
     width: 415px;
   padding: 4px;
+  }
+  .search-container{
+    width: 415px;
+    padding: 4px;
+  }
+  .search-heading{
+    padding: 40px 20px;
+  }
+  .search-sec{
+    padding: 20px 20px;
+  }
+  .heading{
+    font-size: 18px;
+  }
+  .cancel-search{
+    font-size: 18px;
   }
   .cart-heading{
     margin-top: 35px;
