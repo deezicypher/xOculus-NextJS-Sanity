@@ -1,6 +1,6 @@
 import React,{createContext, useContext, useState, useEffect} from "react";
 import {toast} from 'react-hot-toast';
-import Cookies from 'js-cookie';
+import { client } from "../utils/client";
 
 
 
@@ -10,12 +10,12 @@ const Context = createContext();
 export const StateContext = ({children}) => {
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
-    const [cartItems, setCartItems] = useState(
-        Cookies.get('cartItems')? JSON.parse(Cookies.get('cartItems')) : []
-    );
+    const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
+    const [stock, setStock] = useState();
+
 
     let foundProduct;
     let index;
@@ -35,14 +35,20 @@ export const StateContext = ({children}) => {
         const newCartItems = cartItems.filter( item => item._id !== id);
 
         if(value === 'inc'){
-            setCartItems([...newCartItems,{...foundProduct, quantity: foundProduct.quantity += 1 }])
+        if(foundProduct.quantity < stock){
+            const updatedCartItems = [...newCartItems,{...foundProduct, quantity: foundProduct.quantity += 1 }]
+            setCartItems(updatedCartItems)
             setTotalPrice(prevTotalPrice => prevTotalPrice + foundProduct.price)
             setTotalQuantities(prevTotalQty => prevTotalQty + 1)
+        }
         }else if(value === 'dec'){
+           
             if(foundProduct.quantity > 1){
-            setCartItems([...newCartItems,{...foundProduct, quantity: foundProduct.quantity -= 1 }])
+            const updatedCartItems = [...newCartItems,{...foundProduct, quantity: foundProduct.quantity -= 1 }]
+            setCartItems(updatedCartItems)
             setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.price)
             setTotalQuantities(prevTotalQty => prevTotalQty - 1)
+   
         }
     }
     }
@@ -50,7 +56,9 @@ export const StateContext = ({children}) => {
 
 
     const incQty = () => {
+        if(qty < stock){
         setQty(prevQty => prevQty + 1)
+        }
     }
     const decQty = () => {
         setQty(prevQty => {
@@ -63,11 +71,13 @@ export const StateContext = ({children}) => {
  
     
     const onAdd = (qty, product) => {
+       
         
         const checkProductInCart = cartItems.find(item => item._id === product._id)
- 
-      
+        
+     
         if (checkProductInCart){
+          
             setTotalPrice(prevTotalPrice => prevTotalPrice + qty * product.price);
             setTotalQuantities(prevTotalQty => prevTotalQty + qty)
 
@@ -77,23 +87,35 @@ export const StateContext = ({children}) => {
                     quantity: cartProduct.quantity + qty
                 }
             })
-            Cookies.set('cartItems',updatedCartItems,{ expires: 1 })
-            setCartItems(updatedCartItems)
+            setCartItems(updatedCartItems);
+            
             
         }else{
+            const newPrice = totalPrice + qty * product.price
             setTotalPrice(prevTotalPrice => prevTotalPrice + qty * product.price);
             setTotalQuantities(prevTotalQty => prevTotalQty + qty)
             product.quantity = qty
-            
             setCartItems([...cartItems, {...product}])
-        }
   
+
+           
+        }
+        
+
         toast.success(`${qty} ${product.name} added to cart`) 
+  
     }
 
+    const stockInfo = async (id) => {
+        const query = `*[_type == 'product' &&  _id == '${id}'] [0]`
+        const product = await client.fetch(query)
+       setStock(product.stock)
+    }
+ 
     return (
         <Context.Provider
             value={{
+                stock,
                 showCart,
                 showSearch,
                 cartItems,
@@ -108,6 +130,7 @@ export const StateContext = ({children}) => {
                 setTotalPrice,
                 setTotalQuantities,
                 setShowCart,
+                stockInfo,
                 updateCartItemQuantity,
                 removeFromCart
             }}

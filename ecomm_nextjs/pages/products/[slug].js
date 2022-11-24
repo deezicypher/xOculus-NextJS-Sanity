@@ -10,15 +10,9 @@ import toast from 'react-hot-toast';
 const ProductDetails = ({product,products}) => {
     const {name,price,image,detail} = product;
     const [index, setIndex] = useState(0);
-    const [stock, setStock] = useState();
-    const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
+    const {decQty, incQty, qty, onAdd, stock, stockInfo, setShowCart} = useStateContext();
 
-    const stockInfo = async (id) => {
-        const query = `*[_type == 'product' &&  _id == '${id}'] [0]`
-        const product = await client.fetch(query)
-       setStock(product.stock)
 
-    }
     const handleBuyNow = () => {
         onAdd(qty, product);
         setShowCart(true);
@@ -26,7 +20,7 @@ const ProductDetails = ({product,products}) => {
 
     useEffect(()=>{
         stockInfo(product._id)
-},[product._id])
+    },[product._id])
     return (
         <div>
             
@@ -43,7 +37,6 @@ const ProductDetails = ({product,products}) => {
                           src={urlFor(item).url()}
                           alt=""
                           className={i === index? "small-image selected-image" : "small-image"}
-                          onMouseEnter=""
                           onClick={() => setIndex(i)}
                           />
                       ))}

@@ -43,7 +43,7 @@ const Cart = () => {
           <span className='cart-num-items'>({totalQuantities} items) </span>
           </div>
    
-        {cartItems.length < 1 && (
+        {cartItems?.length < 1 && (
           <div className='empty-cart'>
               <FiShoppingCart className='cart-icon' size={200}/>
               <h3>Oops Empty Cart</h3>
