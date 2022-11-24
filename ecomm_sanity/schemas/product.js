@@ -40,6 +40,12 @@ export default {
         name:'detail',
         title: 'Detail',
         type: 'string',
+    },
+    {
+        name:'stock',
+        title: 'Stock',
+        type: 'number',
+        initialValue: 1
     }
-    ]
+]
 }

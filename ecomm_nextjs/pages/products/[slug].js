@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {client, urlFor } from '../../utils/client';
-import {AiOutlineMinus,AiFillStar, AiOutlinePlus} from 'react-icons/ai';
+import {AiOutlineMinus,AiFillStar, AiOutlinePlus,AiOutlineStop} from 'react-icons/ai';
 import Product from '../../components/Product';
 import { useStateContext } from '../../context/stateContext';
 import toast from 'react-hot-toast';
@@ -10,14 +10,23 @@ import toast from 'react-hot-toast';
 const ProductDetails = ({product,products}) => {
     const {name,price,image,detail} = product;
     const [index, setIndex] = useState(0);
+    const [stock, setStock] = useState();
     const {decQty, incQty, qty, onAdd, setShowCart} = useStateContext();
 
-  
+    const stockInfo = async (id) => {
+        const query = `*[_type == 'product' &&  _id == '${id}'] [0]`
+        const product = await client.fetch(query)
+       setStock(product.stock)
+
+    }
     const handleBuyNow = () => {
         onAdd(qty, product);
         setShowCart(true);
     }
 
+    useEffect(()=>{
+        stockInfo(product._id)
+},[product._id])
     return (
         <div>
             
@@ -56,16 +65,28 @@ const ProductDetails = ({product,products}) => {
                                 <h3>Quantity: </h3>
                                 <p className='quantity-desc'>
                                     <span className='minus'
-                                    onClick={decQty}
+                                    onClick={
+                                        stock >= 1?
+                                        decQty : () => {}
+                                    }
                                     ><AiOutlineMinus/></span>
                                     <span className='num'
                                     
                                     >{qty}</span>
                                     <span className='plus'
-                                    onClick={incQty}
+                                    onClick={
+                                        stock >= 1?
+                                        incQty
+                                        : () => {}
+                                    }
                                     ><AiOutlinePlus/></span>
                                 </p>
                             </div>
+                            <div className='quantity'>
+                                <h3>Stock:{" "} {stock} </h3>
+                               
+                            </div>
+                            {stock >= 1 && (
                             <div className='buttons'>
                                 <button 
                                 type="button"
@@ -83,6 +104,13 @@ const ProductDetails = ({product,products}) => {
                                 </button>
                                 
                             </div>
+                            )}
+                            {stock < 1 && (
+                                <div className='stock-out'>
+                                <AiOutlineStop fontSize={30}/> 
+                                <h3>Out of Stock</h3> 
+                                </div>
+                                )}
                     </div>
                 </div>
                 <div className='similar-products-wrapper'>
