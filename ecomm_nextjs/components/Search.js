@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import {FaTimes} from 'react-icons/fa';
 import {InfinitySpin} from 'react-loader-spinner';
+import { useStateContext } from '../context/stateContext';
 import { client,urlFor } from '../utils/client';
 
 
 const Search = () => {
+    const {setShowSearch} = useStateContext();
     const [searchItem, setSearchItem] = useState('')
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -28,7 +30,7 @@ const Search = () => {
         <div className='search-container'>
         <div className="search-heading">
         <span className='heading'>Search Oculux Store</span>
-        <p><FaTimes fontSize={30} className="cancel-search"/></p>
+        <p><FaTimes fontSize={30} className="cancel-search" onClick={() => setShowSearch(false)}/></p>
         </div>
         <div className='search-sec'>
             <input type="text" 

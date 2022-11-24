@@ -518,6 +518,10 @@ padding: 20px 10px;
   font-weight: 400;
   font-size: 18px;
 }
+.empty-cart .cart-icon{
+  color: #344854;
+  margin-bottom: 20px;
+}
 .item-desc .search-name{
   color: #344854;
   font-weight: 400;
@@ -960,6 +964,14 @@ padding: 3px;
 .item-desc .bottom{
   margin-top: 10px;
 }
+.item-desc .search-name{
+  font-size: 17px;
+}
+.item-desc .search-price{
+  color:rgb(49 168 49);
+  padding: 0px 5px;
+}
+
 .flex h5{
   font-size: 16px;
    color: #324d67;

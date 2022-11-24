@@ -45,9 +45,11 @@ const Cart = () => {
    
         {cartItems.length < 1 && (
           <div className='empty-cart'>
-              <FiShoppingCart size={200}/>
-              <h3>Oops Empt Cart</h3>
-              <p><small>Add items</small></p>
+              <FiShoppingCart className='cart-icon' size={200}/>
+              <h3>Oops Empty Cart</h3>
+              <br/>
+              <p>Add items</p>
+              <br/>
               <Link href='/'>
                 <button
                 type='button'
