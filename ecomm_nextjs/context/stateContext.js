@@ -1,7 +1,7 @@
 import React,{createContext, useContext, useState, useEffect} from "react";
 import {toast} from 'react-hot-toast';
 import { client } from "../utils/client";
-
+import Cookies from 'js-cookie';
 
 
 
@@ -40,6 +40,9 @@ export const StateContext = ({children}) => {
             setCartItems(updatedCartItems)
             setTotalPrice(prevTotalPrice => prevTotalPrice + foundProduct.price)
             setTotalQuantities(prevTotalQty => prevTotalQty + 1)
+            Cookies.set('totalPrice',JSON.stringify(totalPrice+foundProduct.price),{ expires: 1 })
+            Cookies.set('totalQty',JSON.stringify(totalQuantities+1),{ expires: 1 })
+            Cookies.set('cartItems',JSON.stringify(updatedCartItems),{ expires: 1 })
         }
         }else if(value === 'dec'){
            
@@ -48,9 +51,13 @@ export const StateContext = ({children}) => {
             setCartItems(updatedCartItems)
             setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.price)
             setTotalQuantities(prevTotalQty => prevTotalQty - 1)
-   
+            Cookies.set('totalPrice',JSON.stringify(totalPrice-foundProduct.price),{ expires: 1 })
+            Cookies.set('totalQty',JSON.stringify(totalQuantities-1),{ expires: 1 })
+            Cookies.set('cartItems',JSON.stringify(updatedCartItems),{ expires: 1 })
+            
         }
     }
+    
     }
 
 
@@ -78,7 +85,9 @@ export const StateContext = ({children}) => {
      
         if (checkProductInCart){
           
-            setTotalPrice(prevTotalPrice => prevTotalPrice + qty * product.price);
+            setTotalPrice(prevTotalPrice =>
+                 prevTotalPrice + qty * product.price
+               );
             setTotalQuantities(prevTotalQty => prevTotalQty + qty)
 
             const updatedCartItems = cartItems.map(cartProduct => {
@@ -88,17 +97,18 @@ export const StateContext = ({children}) => {
                 }
             })
             setCartItems(updatedCartItems);
-            
-            
+            Cookies.set('totalPrice',JSON.stringify(totalPrice+qty * product.price),{ expires: 1 })
+            Cookies.set('totalQty',JSON.stringify(totalQuantities+qty),{ expires: 1 })
+            Cookies.set('cartItems',JSON.stringify(updatedCartItems),{ expires: 1 })
         }else{
-            const newPrice = totalPrice + qty * product.price
+            
             setTotalPrice(prevTotalPrice => prevTotalPrice + qty * product.price);
             setTotalQuantities(prevTotalQty => prevTotalQty + qty)
             product.quantity = qty
             setCartItems([...cartItems, {...product}])
-  
-
-           
+            Cookies.set('totalPrice',JSON.stringify(totalPrice+qty * product.price),{ expires: 1 })
+            Cookies.set('totalQty',JSON.stringify(totalQuantities+qty),{ expires: 1 })
+            Cookies.set('cartItems',JSON.stringify([...cartItems, {...product}]),{ expires: 1 })
         }
         
 
@@ -112,6 +122,12 @@ export const StateContext = ({children}) => {
        setStock(product.stock)
     }
  
+
+    useEffect(() => {
+        setCartItems(Cookies.get('cartItems')?JSON.parse(Cookies.get('cartItems')): [])
+        setTotalPrice(Cookies.get('totalPrice')?JSON.parse(Cookies.get('totalPrice')): 0)
+        setTotalQuantities(Cookies.get('totalQty')?JSON.parse(Cookies.get('totalQty')): 0)
+    }, [])
     return (
         <Context.Provider
             value={{
