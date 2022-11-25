@@ -27,6 +27,9 @@ export const StateContext = ({children}) => {
         setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.quantity * foundProduct.price);
         setTotalQuantities(prevTotalQty => prevTotalQty - foundProduct.quantity);
         setCartItems(newCartItems)
+        Cookies.remove('cartItems')
+        Cookies.remove('totalPrice')
+        Cookies.remove('totalQty')
     }
 
     const updateCartItemQuantity = (id, value) => {
