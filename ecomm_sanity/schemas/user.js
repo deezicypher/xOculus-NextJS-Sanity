@@ -12,6 +12,7 @@ export default {
             name: 'email',
             title: 'Email',
             type: 'string',
+            unique: true,
         },
         {
             name: 'address',
@@ -21,6 +22,11 @@ export default {
         {
             name: 'password',
             title: 'Password',
+            type: 'string',
+        },
+        {
+            name: 'token',
+            title: 'Token',
             type: 'string',
         },
         {
