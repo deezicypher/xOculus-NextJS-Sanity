@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
       </p>
 <div className='action-btn'>
-  <Link href="/auth/Login"> <AiOutlineLogin className="login-icon" fontSize={25} /></Link>
+  <Link href="/Login"> <AiOutlineLogin className="login-icon" fontSize={25} /></Link>
  
       <button type='button' className='cart-icon' onClick={() => setShowCart(true)} >
           <ImCart/>

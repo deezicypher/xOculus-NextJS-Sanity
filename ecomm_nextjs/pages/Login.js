@@ -7,6 +7,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { useStateContext } from '../context/stateContext';
 
 const Login = () => {
     const formSchema = yup.object().shape({
@@ -18,6 +19,7 @@ const Login = () => {
         .min(6, 'Password must be at 6 characters long'),
 
       })
+    const {setUser} = useStateContext();
     const router = useRouter();
     const formOptions = { resolver: yupResolver(formSchema) }
     const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
@@ -31,7 +33,8 @@ const Login = () => {
           toast.success(`${res.data.msg}`,{
             id: toastId
           })
-          Cookies.set('user',res,data.user,{expires:1})
+          Cookies.set('user',JSON.stringify(res.data.user),{expires:1})
+          setUser(res.data.user)
           router.push('/')
         })
 

@@ -15,6 +15,7 @@ export const StateContext = ({children}) => {
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
     const [stock, setStock] = useState();
+    const [user, setUser] = useState('');
 
 
     let foundProduct;
@@ -127,6 +128,7 @@ export const StateContext = ({children}) => {
  
 
     useEffect(() => {
+        setUser(Cookies.get('user')?JSON.parse(Cookies.get('user')):"")
         setCartItems(Cookies.get('cartItems')?JSON.parse(Cookies.get('cartItems')): [])
         setTotalPrice(Cookies.get('totalPrice')?JSON.parse(Cookies.get('totalPrice')): 0)
         setTotalQuantities(Cookies.get('totalQty')?JSON.parse(Cookies.get('totalQty')): 0)
@@ -134,6 +136,7 @@ export const StateContext = ({children}) => {
     return (
         <Context.Provider
             value={{
+                user,
                 stock,
                 showCart,
                 showSearch,
@@ -144,6 +147,7 @@ export const StateContext = ({children}) => {
                 incQty,
                 decQty,
                 onAdd,
+                setUser,
                 setShowSearch,
                 setCartItems,
                 setTotalPrice,
