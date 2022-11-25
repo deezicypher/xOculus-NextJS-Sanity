@@ -6,6 +6,7 @@ import {Cart} from './index';
 import { useStateContext } from '../context/stateContext';
 import {BsSearch} from 'react-icons/bs';
 import {AiOutlineLogin} from 'react-icons/ai';
+import {RiAccountPinCircleLine} from 'react-icons/ri';
 import Search from './Search';
 
 
@@ -30,6 +31,9 @@ const Navbar = () => {
       <div className='search-icon' onClick={() => setShowSearch(true)} >
           <BsSearch />
       </div>
+      <Link href="/profile" >
+        <RiAccountPinCircleLine fontSize={25}/>
+      </Link>
       </div>
      {showCart && ( <Cart/>)}
      {showSearch && ( <Search/>)}
