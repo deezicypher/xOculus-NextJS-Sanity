@@ -3,6 +3,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 import banner from './banner';
 import product from './product';
+import user from './user';
 
 
 export default createSchema({
@@ -10,6 +11,6 @@ export default createSchema({
   name: 'default',
 
   types: schemaTypes.concat([
-    product,banner
+    product,banner,user
   ]),
 })

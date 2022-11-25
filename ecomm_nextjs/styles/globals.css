@@ -1,3 +1,5 @@
+
+
 html,
 body, * {
   padding: 0;
@@ -67,7 +69,7 @@ width: 100%;
 .logo{
   color: #1d3244;
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 .action-btn{
@@ -80,6 +82,9 @@ width: 100%;
 .search-icon{
   font-size: 20px;
   transition: transform .4s ease;
+}
+.search-icon:hover{
+  transform: scale(1.1,1.1);
 }
 
 .search-heading{
@@ -179,6 +184,15 @@ width: 100%;
 }
 .cart-icon:hover{
   transform: scale(1.1,1.1);
+ 
+}
+.login-icon{
+  transition: transform .4s ease;
+  position: relative;
+}
+
+.login-icon:hover{
+    transform: scale(1.1,1.1);
 }
 .cart-item-qty{
   position: absolute;
@@ -297,7 +311,53 @@ width: 100%;
   opacity: 95%;
 }
 
+.auth-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  gap: 50px;
+}
+.auth-form .form-heading{
+  text-align: center;
+}
+.form-heading h2{
+  margin-bottom: 20px;
+  color: #111828;
+  font-size: 30px;
+}
+.form-heading p{
+  color: #1d66c1;
+  font-size: 14px;
+}
+.auth-form form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.auth-form form input{
+  width: 400px;
+  height: 40px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid #d9dde1;
 
+}
+.form-error{
+  text-align: center;
+  font-size: 14px;
+  color: rgb(210, 30, 48);
+  margin-bottom: -5px;
+}
+.auth-form form input:focus-visible{
+  border: 1px solid #d9dde1;
+}
+
+.form-btn{
+  background-color: #1d66c1;
+  color: #ffffff;
+}
 .desc{
 position: absolute;
 right: 10%;
