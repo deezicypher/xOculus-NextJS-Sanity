@@ -25,7 +25,7 @@ const Login = () => {
       <h2>Sign in to your account</h2>
       <p >
         Or
-        <Link href="/auth/Register" className=""> create an account here</Link>
+        <Link href="/Register" className=""> create an account here</Link>
       </p>
     </div>
 
