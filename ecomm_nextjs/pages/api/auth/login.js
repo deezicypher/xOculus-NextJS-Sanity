@@ -1,8 +1,8 @@
-import { client } from "../../utils/client";
+import { client } from "../../../utils/client";
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
-import { signToken } from '../../utils/signToken';
-import { verifyEmailQ } from "../../utils/query";
+import { signToken } from '../../../utils/signToken';
+import { verifyEmailQ } from "../../../utils/query";
 
 export default function  (req, res) {
     const user = req.body

@@ -34,7 +34,7 @@ const Register = () => {
         const {confirmPass, ...newData} = data;
         const toastId = toast.loading('Loading...');
         try{
-          await axios.post('/api/auth',newData)
+          await axios.post('/api/auth/register',newData)
           .then(
             res => {
               toast.success(`${res.data}`, {
