@@ -12,7 +12,8 @@ import Sidebar from './Sidebar';
 
 
 const Navbar = () => {
-  const {showCart, setShowCart,setShowSidebar,showSidebar, totalQuantities, showSearch, setShowSearch} = useStateContext()
+  const {showCart, setShowCart,setShowSidebar,showSidebar,user, totalQuantities, showSearch, setShowSearch} = useStateContext()
+  const {_id , name} = user;
   return (
     <div className='navbar-container'>
       <div className='menu'>
@@ -36,12 +37,12 @@ const Navbar = () => {
       <div className='search-icon' onClick={() => setShowSearch(true)} >
           <BsSearch />
       </div>
-      <Link href="/profile" >
+      <Link href={`/account/${_id}`} >
         <RiAccountPinCircleLine className='profile-icon' fontSize={25}/>
       </Link>
       </div>
       {showSidebar && (
-    <Sidebar setShowSearch={setShowSearch} setShowSidebar={setShowSidebar} />
+    <Sidebar setShowSearch={setShowSearch} user={user} setShowSidebar={setShowSidebar} />
     )}
      {showCart && ( <Cart/>)}
      {showSearch && ( <Search/>)}

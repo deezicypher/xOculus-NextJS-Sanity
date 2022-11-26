@@ -989,6 +989,9 @@ padding: 6px;
     font-size: 20px;
   }
 
+  .sidebar .account-name{
+    text-transform: capitalize;
+  }
 
   .navbar-container .sidebar .search-icon, .login-icon, .profile-icon{
   display: flex;
