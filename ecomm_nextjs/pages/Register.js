@@ -32,9 +32,12 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm(formOptions);
    
 
-    if(user){
-      router.push('/')
-    }
+    useEffect(() => {
+      if(user){
+        router.push(redirect || '/')
+      }
+    },[user,router, redirect])
+    const {redirect} = router.query;
     const onSubmit =  async data => {
         const {confirmPass, ...newData} = data;
         const toastId = toast.loading('Loading...');
@@ -45,7 +48,7 @@ const Register = () => {
               toast.success(`${res.data}`, {
                 id: toastId,
               })
-              router.push('/Login');
+              router.push(redirect || '/Login');
             }
           )
         }catch(err){
@@ -62,7 +65,7 @@ const Register = () => {
       <h2>Sign up an account</h2>
       <p >
         Or
-        <Link href="/auth/Login" className=""> Login to your account here</Link>
+        <Link href={`/Login?redirect=${redirect || '/'}`} className=""> Login to your account here</Link>
       </p>
     </div>
 

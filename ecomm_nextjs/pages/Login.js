@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -19,14 +19,20 @@ const Login = () => {
         .min(6, 'Password must be at 6 characters long'),
 
       })
+
+      const router = useRouter();
+    const {redirect} = router.query;
+
     const {setUser, user} = useStateContext();
-    const router = useRouter();
+   
     const formOptions = { resolver: yupResolver(formSchema) }
     const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
     
+    useEffect(() => {
     if(user){
-      router.push('/')
+      router.push(redirect || '/')
     }
+  },[user,router, redirect])
     const onSubmit = async data => {
       const toastId = toast.loading("Logging in...")
       try{
@@ -38,7 +44,7 @@ const Login = () => {
           })
           Cookies.set('user',JSON.stringify(res.data.user),{expires:1})
           setUser(res.data.user)
-          router.push('/')
+          router.push(redirect || '/')
         })
 
       }catch(err){
@@ -55,7 +61,7 @@ const Login = () => {
       <h2>Sign in to your account</h2>
       <p >
         Or
-        <Link href="/Register" className=""> create an account here</Link>
+        <Link href={`/Register?redirect=${redirect || '/Login'}`} className=""> create an account here</Link>
       </p>
     </div>
 

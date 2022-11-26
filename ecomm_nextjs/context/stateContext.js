@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 const Context = createContext();
 
 export const StateContext = ({children}) => {
+
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
@@ -17,6 +18,8 @@ export const StateContext = ({children}) => {
     const [qty, setQty] = useState(1);
     const [stock, setStock] = useState();
     const [user, setUser] = useState('');
+    const [shippingDetails, setShippingDetails] = useState({})
+
     const router = useRouter();
 
 
@@ -72,6 +75,7 @@ export const StateContext = ({children}) => {
         Cookies.remove('cartItems')
         Cookies.remove('totalPrice')
         Cookies.remove('totalQty')
+        Cookies.remove('shippingDetails')
         router.push('/')
     }
 
@@ -148,6 +152,7 @@ export const StateContext = ({children}) => {
         setCartItems(Cookies.get('cartItems')?JSON.parse(Cookies.get('cartItems')): [])
         setTotalPrice(Cookies.get('totalPrice')?JSON.parse(Cookies.get('totalPrice')): 0)
         setTotalQuantities(Cookies.get('totalQty')?JSON.parse(Cookies.get('totalQty')): 0)
+        setShippingDetails(Cookies.get('shippingDetail')?JSON.parse(Cookies.get('shippingDetails')): {})
         setShowSearch(false)
         setShowSidebar(false)
         setShowCart(false)
@@ -165,6 +170,7 @@ export const StateContext = ({children}) => {
                 totalPrice,
                 totalQuantities,
                 qty,
+                shippingDetails,
                 incQty,
                 decQty,
                 onAdd,
@@ -178,6 +184,7 @@ export const StateContext = ({children}) => {
                 stockInfo,
                 updateCartItemQuantity,
                 removeFromCart,
+                setShippingDetails,
                 logout
             }}
         >

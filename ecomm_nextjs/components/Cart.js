@@ -7,13 +7,15 @@ import {FiShoppingCart} from 'react-icons/fi';
 import {AiFillMinusCircle,AiFillPlusCircle,AiOutlineDelete} from 'react-icons/ai';
 import getStripePromise from '../utils/getStripe';
 import toast from 'react-hot-toast';
-
+import { useRouter } from 'next/router';
 
 const Cart = () => {
   const cartRef = useRef();
-  const {totalPrice,setShowCart,totalQuantities, cartItems,updateCartItemQuantity,removeFromCart } = useStateContext();
+  const {totalPrice,setShowCart,totalQuantities,user, cartItems,updateCartItemQuantity,removeFromCart } = useStateContext();
 
-  const handleCheckOut = async () => {
+  const router = useRouter();
+
+  const handleStripe = async () => {
       const stripe = await getStripePromise();
       const response = await fetch('/api/stripe/',{
         method: 'POST',
@@ -30,6 +32,15 @@ const Cart = () => {
       stripe.redirectToCheckout({sessionId: data.id})
 
   }
+
+  const handleCheckOut = () => {
+    if(!user){
+      router.push('/Login?redirect=/shipping')
+    }
+    router.push('/shipping')
+  }
+
+
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
@@ -108,7 +119,7 @@ const Cart = () => {
             </div>
             <div className='btn-container'>
               <button className='btn' type='button' onClick={handleCheckOut}>
-                    Check Out With Stripe
+                    Check Out
               </button>
               </div>
         </div>

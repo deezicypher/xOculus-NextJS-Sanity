@@ -337,6 +337,15 @@ width: 100%;
   color: #1d66c1;
   font-size: 14px;
 }
+.shipping p{
+  color: #153359;
+  font-size: 14px;
+}
+.shipping-btn{
+  background-color: crimson;
+  color: white;
+}
+
 .auth-form form{
   display: flex;
   flex-direction: column;
