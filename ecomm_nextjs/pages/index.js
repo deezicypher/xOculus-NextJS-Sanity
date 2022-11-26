@@ -4,6 +4,10 @@ import {client, urlFor} from '../utils/client.js'
 
 
 const Home = ({products,bannerData}) => {
+
+
+  console.log(cart)
+
   return (
    <div className='main-container'>
    <HeroBanner heroBanner={bannerData.length && bannerData[1]}/>

@@ -27,12 +27,12 @@ const Login = () => {
    
     const formOptions = { resolver: yupResolver(formSchema) }
     const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
-    
+ 
     useEffect(() => {
     if(user){
       router.push(redirect || '/')
     }
-  },[user,router, redirect])
+  },[user,router, redirect]) 
     const onSubmit = async data => {
       const toastId = toast.loading("Logging in...")
       try{

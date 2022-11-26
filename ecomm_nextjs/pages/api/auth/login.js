@@ -20,6 +20,6 @@ export default   async function(req, res) {
             res.status(500).json("Unable to proceed further at the moment")
         }
     }else{
-        res.status(500).json("Unable to proceed further at the moment")
+        res.status(405).end();
     }
   }

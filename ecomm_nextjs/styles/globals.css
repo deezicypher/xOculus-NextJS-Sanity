@@ -766,6 +766,17 @@ padding: 30px 65px;
   margin-top: 10px ;
   align-items: center;
 }
+.ship-quantity{
+  margin-top: 30px;
+}
+.ship-quantity h3{
+  font-size: 15px;
+  padding-bottom: 10px;
+ 
+}
+.ship-quantity .price{
+  font-size: 20px;
+}
 .product-detail-desc .stock-out{
   display: flex;
   gap: 20px;

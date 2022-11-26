@@ -1,7 +1,7 @@
 import { client } from "../../../utils/client";
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
-import { signToken } from '../../../utils/signToken';
+import { signToken } from '../../../utils/Token';
 import { verifyEmailQ } from "../../../utils/query";
 
 export default async function  (req, res) {
@@ -27,7 +27,7 @@ export default async function  (req, res) {
         console.log(err)
         res.status(500).json("Unable to proceed further at the moment")
     }
-      
+}else{
       // Handle any other HTTP method
       res.status(405).end();
 

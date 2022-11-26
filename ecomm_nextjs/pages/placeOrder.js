@@ -4,16 +4,34 @@ import { urlFor } from '../utils/client';
 import {GrPaypal} from 'react-icons/gr';
 import {FaStripeS} from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const placeOrder = () => {
-    const {cartItems,shippingDetails, totalPrice,user, totalQuantities} = useStateContext();
+    const {cartItems,shippingDetails,setShowCart, totalPrice,user, totalQuantities} = useStateContext();
     const router = useRouter();
+
+
+
+    const onPlace = async () => {
+        try {
+            const res = await axios.post('/api/orders/',{},{ headers: {"Authorization" : `Bearer ${user.token}`} })
+            console.log(res.data)
+    }catch(err){
+        console.log(err)
+    }
+    }
+
     useEffect(() => {
-       
-        if(!user && cartItems.length <= 0 && shippingDetails){
-             router.push('/Login?redirect=/shipping')
+        if( cartItems.length <= 0 ){
+             router.push('/shipping')
+       }
+        if(!shippingDetails){
+         router.push('/Login?redirect=/shipping')
         }
+      
     },[router,shippingDetails, user])
+
+    if(!shippingDetails ) return <h2 className='order-header'>.....</h2>
   return (
     <>
     <h2 className='order-header'>Order Details</h2>
@@ -49,19 +67,18 @@ const placeOrder = () => {
                             <p>Country: <span className='orderD'>{shippingDetails?.country}</span></p>
                             
                            
-                         
-                            <div className='quantity'>
+                            <div className='ship-quantity'>
+                               <h3 >Total Quantity:{" "} {totalQuantities} </h3>
+                        
                             <h3>Total Price:{" "} <span className='price'> ${totalPrice.toFixed(2)}</span> </h3>
                             </div>
-                            <div className='quantity'>
-                               <h3>Total Quantity:{" "} {totalQuantities} </h3>
-                            </div>
+                         
                            
                             <div className='order-buttons'>
                                 <button 
                                 type="button"
                                 className='stripe-btn'
-
+                                onClick={() => onPlace()}
                                 >
                                 <FaStripeS/> {" "}  Stripe
                                 </button>

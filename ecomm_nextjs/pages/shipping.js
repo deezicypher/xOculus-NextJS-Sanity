@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 
 const shipping = () => {
-    const {setShippingDetails,shippingDetails, user} = useStateContext();
+    const {setShippingDetails,shippingDetails,cartItems,setShowCart, user} = useStateContext();
     const formSchema = yup.object().shape({
         name: yup.string()
         .required('Please enter your name'),
@@ -29,15 +29,21 @@ const shipping = () => {
 
 
     const onSubmit = data => {
+        if(cartItems.length <= 0) {
+          setShowCart(true)
+        }else{
         Cookies.set('shippingDetails',JSON.stringify(data));
         setShippingDetails(data)
-        router.push('/placeOrder')
+        router.push('/placeorder')
+        }
     }
 
 
 
     useEffect(() => {
-      console.log(shippingDetails)
+      if(cartItems.length <= 0){
+        setShowCart(true)
+      }
        if (user){
         setValue('name',shippingDetails?.name )
         setValue('address',shippingDetails?.address)
