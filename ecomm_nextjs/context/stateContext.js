@@ -3,7 +3,7 @@ import {toast} from 'react-hot-toast';
 import { client } from "../utils/client";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router'
-
+import jwtDecode from "jwt-decode";
 
 const Context = createContext();
 
@@ -69,7 +69,7 @@ export const StateContext = ({children}) => {
     
     }
 
-    const logout = () => {
+    const logout = (link) => {
         setUser('')
         Cookies.remove('user')
         Cookies.remove('cartItems')
@@ -139,12 +139,22 @@ export const StateContext = ({children}) => {
        setStock(product.stock)
     }
  
+    const checkTokenExpiration = () => {
+        const token = user.token
+        if(token){
+            console.log(token,jwtDecode(token),jwtDecode(token).exp < Date.now() / 1000)
+        if (jwtDecode(token).exp < Date.now() / 1000) {
+         logout('Login');
+        }}
+
+      };
+
 
     useEffect(() => {
-     setShowSearch(false)
+        setShowSearch(false)
         setShowSidebar(false)
         setShowCart(false)
-
+        checkTokenExpiration()
     }, [router])
 
     useEffect(() => {
@@ -156,7 +166,6 @@ export const StateContext = ({children}) => {
         setShowSearch(false)
         setShowSidebar(false)
         setShowCart(false)
-
     }, [])
     return (
         <Context.Provider

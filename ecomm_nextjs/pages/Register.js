@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -32,11 +32,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm(formOptions);
    
 
-    useEffect(() => {
-      if(user){
-        router.push(redirect || '/')
-      }
-    },[user,router, redirect])
+
     const {redirect} = router.query;
     const onSubmit =  async data => {
         const {confirmPass, ...newData} = data;
@@ -58,6 +54,13 @@ const Register = () => {
         }
 
     };
+
+    useEffect(() => {
+      if(user){
+        router.push(redirect || '/')
+      }
+    },[user,router, redirect])
+    
   return (
     <div className="auth-form">
  
