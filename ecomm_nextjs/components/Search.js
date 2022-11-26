@@ -3,7 +3,7 @@ import {FaTimes} from 'react-icons/fa';
 import {InfinitySpin} from 'react-loader-spinner';
 import { useStateContext } from '../context/stateContext';
 import { client,urlFor } from '../utils/client';
-
+import Link from 'next/link';
 
 const Search = () => {
     const {setShowSearch} = useStateContext();
@@ -56,6 +56,7 @@ const Search = () => {
 <div className='product-container'>
         {products.length >= 1 && (products.map(product => (
           <div className='search-product' key={product._id} >
+            <Link href={`/products/${product.slug.current}`}>
             <img 
             src={urlFor(product?.image[0]).url()}
             className='search-product-image'/>
@@ -65,6 +66,7 @@ const Search = () => {
             <small className='search-price'>${product.price}</small>
             </div>
             </div>
+            </Link>
             </div>
         )))
 }

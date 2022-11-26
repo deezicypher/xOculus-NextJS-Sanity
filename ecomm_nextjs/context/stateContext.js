@@ -2,7 +2,7 @@ import React,{createContext, useContext, useState, useEffect} from "react";
 import {toast} from 'react-hot-toast';
 import { client } from "../utils/client";
 import Cookies from 'js-cookie';
-
+import { useRouter } from 'next/router'
 
 
 const Context = createContext();
@@ -17,6 +17,7 @@ export const StateContext = ({children}) => {
     const [qty, setQty] = useState(1);
     const [stock, setStock] = useState();
     const [user, setUser] = useState('');
+    const router = useRouter();
 
 
     let foundProduct;
@@ -129,10 +130,21 @@ export const StateContext = ({children}) => {
  
 
     useEffect(() => {
+     setShowSearch(false)
+        setShowSidebar(false)
+        setShowCart(false)
+
+    }, [router])
+
+    useEffect(() => {
         setUser(Cookies.get('user')?JSON.parse(Cookies.get('user')):"")
         setCartItems(Cookies.get('cartItems')?JSON.parse(Cookies.get('cartItems')): [])
         setTotalPrice(Cookies.get('totalPrice')?JSON.parse(Cookies.get('totalPrice')): 0)
         setTotalQuantities(Cookies.get('totalQty')?JSON.parse(Cookies.get('totalQty')): 0)
+        setShowSearch(false)
+        setShowSidebar(false)
+        setShowCart(false)
+
     }, [])
     return (
         <Context.Provider
