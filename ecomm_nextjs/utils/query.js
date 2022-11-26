@@ -1,6 +1,6 @@
 
 export const verifyEmailQ = (email) => {
-    const query = `*[_type == 'user' && email match '${email}']`
+    const query = `*[_type == "user" && email == "${email}"][0]`
     return query
 }
 export const LoginQuery = (email,password) => {

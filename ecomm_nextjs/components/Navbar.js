@@ -27,7 +27,7 @@ const Navbar = () => {
       </p>
      
 <div className='action-btn'>
-  <Link href="/Login"> <AiOutlineLogin className="login-icon" fontSize={25} /></Link>
+  
  
       <button type='button' className='cart-icon' onClick={() => setShowCart(true)} >
           <ImCart/>
@@ -37,9 +37,21 @@ const Navbar = () => {
       <div className='search-icon' onClick={() => setShowSearch(true)} >
           <BsSearch />
       </div>
+      {_id && (
       <Link href={`/account/${_id}`} >
         <RiAccountPinCircleLine className='profile-icon' fontSize={25}/>
       </Link>
+      )
+      }
+{_id?
+  <AiOutlineLogin className="login-icon" fontSize={25} />
+     
+      :
+      <Link href="/Login"> <AiOutlineLogin className="login-icon" fontSize={25} />
+      
+      </Link>
+     
+}
       </div>
       {showSidebar && (
     <Sidebar setShowSearch={setShowSearch} user={user} setShowSidebar={setShowSidebar} />

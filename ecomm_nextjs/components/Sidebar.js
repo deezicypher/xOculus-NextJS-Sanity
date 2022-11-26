@@ -27,16 +27,18 @@ const Sidebar = ({setShowSearch,setShowSidebar, user}) => {
     </Link>
 )}
 
-    
-    <Link href="/Login"> 
+{_id?  
+  
     <div className='link'>
-    <AiOutlineLogin className="login-icon"  fontSize={30} /> 
-    {_id?
-    <span>Logout</span> :
-         <span>Login / Register</span>
-    }
+    <AiOutlineLogin className="login-icon"  fontSize={30} />  Logout
     </div>
-    </Link>
+:
+<Link href="/Login"> 
+<div className='link'>
+<AiOutlineLogin className="login-icon"  fontSize={30} /> Login / Register
+</div>
+</Link>
+}
  
     </div>
     <div className='sidebar-footer'>

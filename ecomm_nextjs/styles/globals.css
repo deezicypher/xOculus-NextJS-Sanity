@@ -989,8 +989,12 @@ padding: 6px;
     font-size: 20px;
   }
 
-  .sidebar .account-name{
+  .account-name{
     text-transform: capitalize;
+  }
+
+  .cart-icon{
+    margin-left: -10px;
   }
 
   .navbar-container .sidebar .search-icon, .login-icon, .profile-icon{

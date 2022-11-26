@@ -2,35 +2,24 @@ import { client } from "../../../utils/client";
 import bcrypt from 'bcryptjs';
 import { verifyEmailQ } from "../../../utils/query";
 
-export default function  (req, res) {
-    const user = req.body
-    const pass = user.password
-    const query = verifyEmailQ(user.email)
-    
-    
+export default   async function(req, res) {
+    const {email, password} = req.body;
     if (req.method === 'POST') {
-    
-        client.fetch(query).then(
-
-             result => {
-                if(result.length > 0) {
-                    const {password} = result[0];
-                    const checkpass = bcrypt.compareSync(pass, password)
-                    if(checkpass){
-                        const {_id, name, token,email} = result[0];
-                        const doc = {_id,name,token,email}
-                        res.status(200).json({user:doc,msg:'Login successful'})
-                    }else{
-                     res.status(401).json('Wrong credentials')
-                    }
-                }else{
-                    res.status(404).json('User with email not found')
-                }
-            }
-        ).catch(err => console.log(err));
-    }
-else {
-      // Handle any other HTTP method
-      res.status(405).end();
+        try {
+        const user =  await client.fetch(verifyEmailQ(email));
+       
+        if(!user) return res.status(404).json('User with email not found');
+        if(user && bcrypt.compareSync(password, user.password)){
+            const {_id, name,isAdmin, token,email} = user;
+            const doc = {_id,name,token,email,isAdmin}
+            res.status(200).json({user:doc,msg:'Login successful'})
+        }else{
+            res.status(401).json('Wrong credentials')
+           }
+        }catch(err){
+            res.status(500).json("Unable to proceed further at the moment")
+        }
+    }else{
+        res.status(500).json("Unable to proceed further at the moment")
     }
   }
