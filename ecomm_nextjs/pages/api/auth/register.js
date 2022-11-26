@@ -4,35 +4,32 @@ import bcrypt from 'bcryptjs';
 import { signToken } from '../../../utils/signToken';
 import { verifyEmailQ } from "../../../utils/query";
 
-export default function  (req, res) {
+export default async function  (req, res) {
     const user = req.body
     var salt = bcrypt.genSaltSync(10);
-    const password = user.password;
-    var hash = bcrypt.hashSync(password, salt)
+    var hash = bcrypt.hashSync(user.password, salt)
     const token = signToken(user)
     const doc = {...user,password:hash,_type:'user',token}
     const query = verifyEmailQ(user.email)
 
     if (req.method === 'POST') {
-    
-            client.fetch(query).then(
-
+    try {
+        const user = await client.fetch(query);
+        if(user) return res.status(400).json('User with email already exists')
+        if(!user){
+            client.create(doc).then(
                 result => {
-                    if(result.length <= 0) {
-                        client.create(doc).then(
-                            result => {
-                            res.status(200).json("Registered successfully")
-                            }
-                         )
-                    }else{
-                        res.status(500).json('User with email already exists')
-                    }
+                res.status(200).json("Registered successfully")
                 }
-            ).catch(err => console.log(err));
+             )
         }
+    }catch(err){
+        console.log(err)
+        res.status(500).json("Unable to proceed further at the moment")
+    }
       
-else {
       // Handle any other HTTP method
       res.status(405).end();
-    }
+
   }
+}
