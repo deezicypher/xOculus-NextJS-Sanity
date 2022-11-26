@@ -66,7 +66,14 @@ export const StateContext = ({children}) => {
     
     }
 
-
+    const logout = () => {
+        setUser('')
+        Cookies.remove('user')
+        Cookies.remove('cartItems')
+        Cookies.remove('totalPrice')
+        Cookies.remove('totalQty')
+        router.push('/')
+    }
 
     const incQty = () => {
         if(qty < stock){
@@ -170,7 +177,8 @@ export const StateContext = ({children}) => {
                 setShowCart,
                 stockInfo,
                 updateCartItemQuantity,
-                removeFromCart
+                removeFromCart,
+                logout
             }}
         >
             {children}

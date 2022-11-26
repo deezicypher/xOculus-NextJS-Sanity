@@ -12,7 +12,7 @@ import Sidebar from './Sidebar';
 
 
 const Navbar = () => {
-  const {showCart, setShowCart,setShowSidebar,showSidebar,user, totalQuantities, showSearch, setShowSearch} = useStateContext()
+  const {showCart, setShowCart,setShowSidebar,showSidebar,user,logout, totalQuantities, showSearch, setShowSearch} = useStateContext()
   const {_id , name} = user;
   return (
     <div className='navbar-container'>
@@ -44,7 +44,7 @@ const Navbar = () => {
       )
       }
 {_id?
-  <AiOutlineLogin className="login-icon" fontSize={25} />
+  <AiOutlineLogin onClick={() => logout()} className="login-icon logout" fontSize={25} />
      
       :
       <Link href="/Login"> <AiOutlineLogin className="login-icon" fontSize={25} />

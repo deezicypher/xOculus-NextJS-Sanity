@@ -19,11 +19,14 @@ const Login = () => {
         .min(6, 'Password must be at 6 characters long'),
 
       })
-    const {setUser} = useStateContext();
+    const {setUser, user} = useStateContext();
     const router = useRouter();
     const formOptions = { resolver: yupResolver(formSchema) }
     const { register, handleSubmit, watch, formState: { errors } } = useForm(formOptions);
     
+    if(user){
+      router.push('/')
+    }
     const onSubmit = async data => {
       const toastId = toast.loading("Logging in...")
       try{

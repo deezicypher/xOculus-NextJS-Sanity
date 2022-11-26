@@ -193,6 +193,9 @@ width: 100%;
   transition: transform .4s ease;
   position: relative;
 }
+.logout{
+  cursor: pointer;
+}
 
 .login-icon:hover{
     transform: scale(1.1,1.1);
@@ -959,8 +962,8 @@ padding: 6px;
 
   .sidebar .close-sidebar{
       float: right;
-      top: 30px;
-      right: 30px;
+      top: 20px;
+      right: 20px;
       position: absolute;
   }
 
@@ -973,7 +976,6 @@ padding: 6px;
     font-size: 20px;
   }
   .sidebar-footer{
-    margin-bottom: -50px;
     padding-top: 30px;
     display: flex;
     flex-direction: column;

@@ -6,8 +6,11 @@ import Link from 'next/link';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router'
+import { useStateContext } from '../context/stateContext';
+
 
 const Register = () => {
+  const {user} = useStateContext();
   const router = useRouter();
     const formSchema = yup.object().shape({
         name: yup.string()
@@ -29,7 +32,9 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm(formOptions);
    
 
-
+    if(user){
+      router.push('/')
+    }
     const onSubmit =  async data => {
         const {confirmPass, ...newData} = data;
         const toastId = toast.loading('Loading...');

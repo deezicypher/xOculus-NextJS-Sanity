@@ -14,7 +14,7 @@ const Sidebar = ({setShowSearch,setShowSidebar, user}) => {
     <div className='sidebar-wrapper'>
         
     <div className='sidebar'>
-   < AiOutlineClose className='close-sidebar' onClick={() => setShowSidebar(false)} fontSize={30} />
+   < AiOutlineClose className='close-sidebar' onClick={() => setShowSidebar(false)} fontSize={25} />
         <div className='sidebar-con'>
     <div className='search-icon link' onClick={() => setShowSearch(true)} >
    <BsSearch fontSize={30} />{" "} Search
