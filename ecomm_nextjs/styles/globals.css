@@ -901,6 +901,7 @@ padding: 6px;
 }
 @media screen and (max-width:800px) {
   .menu{
+    margin-top: 5px;
     display: flex;
   }
   .action-btn{

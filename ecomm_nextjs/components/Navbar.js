@@ -6,7 +6,7 @@ import {Cart} from './index';
 import { useStateContext } from '../context/stateContext';
 import {BsSearch} from 'react-icons/bs';
 import {AiOutlineLogin} from 'react-icons/ai';
-import {RiAccountPinCircleLine,RiMenu3Fill} from 'react-icons/ri';
+import {RiAccountPinCircleLine,RiMenu2Fill} from 'react-icons/ri';
 import Search from './Search';
 import Sidebar from './Sidebar';
 
@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className='navbar-container'>
       <div className='menu'>
-      <RiMenu3Fill fontSize={25} onClick={() => setShowSidebar(true)}/>
+      <RiMenu2Fill fontSize={25} onClick={() => setShowSidebar(true)}/>
       </div>
       <p className='logo'>
         <Link href='/'>
