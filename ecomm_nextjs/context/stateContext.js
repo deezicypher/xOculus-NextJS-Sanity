@@ -152,7 +152,7 @@ export const StateContext = ({children}) => {
         setCartItems(Cookies.get('cartItems')?JSON.parse(Cookies.get('cartItems')): [])
         setTotalPrice(Cookies.get('totalPrice')?JSON.parse(Cookies.get('totalPrice')): 0)
         setTotalQuantities(Cookies.get('totalQty')?JSON.parse(Cookies.get('totalQty')): 0)
-        setShippingDetails(Cookies.get('shippingDetail')?JSON.parse(Cookies.get('shippingDetails')): {})
+        setShippingDetails(Cookies.get('shippingDetails')?JSON.parse(Cookies.get('shippingDetails')): {})
         setShowSearch(false)
         setShowSidebar(false)
         setShowCart(false)

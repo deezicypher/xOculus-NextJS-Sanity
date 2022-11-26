@@ -63,7 +63,7 @@ const Search = () => {
             <div className="item-desc">
             <div className='flex top'>
             <h5 className='search-name'>{product.name}</h5>
-            <small className='search-price'>${product.price}</small>
+            <small className='search-price'>${product.price.toFixed(2)}</small>
             </div>
             </div>
             </Link>

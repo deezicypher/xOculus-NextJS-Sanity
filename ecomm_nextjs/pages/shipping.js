@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import Link from 'next/link';
+import Cookies from 'js-cookie';
 import { useStateContext } from '../context/stateContext';
 import { useRouter } from 'next/router';
 
@@ -31,10 +31,13 @@ const shipping = () => {
     const onSubmit = data => {
         Cookies.set('shippingDetails',JSON.stringify(data));
         setShippingDetails(data)
+        router.push('/placeOrder')
     }
 
+
+
     useEffect(() => {
-     
+      console.log(shippingDetails)
        if (user){
         setValue('name',shippingDetails?.name )
         setValue('address',shippingDetails?.address)
@@ -97,7 +100,7 @@ const shipping = () => {
   {...register("country")}
 />
 
-<input className='shipping-btn' type="submit" value="Pay With Stripe" />
+<input className='shipping-btn'  type="submit" value="Continue" />
         </form>
     </div>
     

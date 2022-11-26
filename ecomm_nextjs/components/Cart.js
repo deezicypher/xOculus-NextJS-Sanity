@@ -82,7 +82,7 @@ const Cart = () => {
             <div className="item-desc">
             <div className='flex top'>
             <h5 className='name'>{product.name}</h5>
-            <h4 className='price'>${product.price}</h4>
+            <h4 className='price'>${product.price.toFixed(2)}</h4>
             </div>
             <div className='flex bottom'>
               <div>
@@ -115,7 +115,7 @@ const Cart = () => {
         <div className='cart-bottom'>
           <div className='total'>
             <h3>Subtotal: </h3>
-            <h3>${totalPrice}</h3>
+            <h3>${totalPrice.toFixed(2)}</h3>
             </div>
             <div className='btn-container'>
               <button className='btn' type='button' onClick={handleCheckOut}>
