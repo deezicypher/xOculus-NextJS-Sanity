@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateContext } from '../context/stateContext'
 import { urlFor } from '../utils/client';
 import {GrPaypal} from 'react-icons/gr';
 import {FaStripeS} from 'react-icons/fa';
+import { useRouter } from 'next/router';
 
 const placeOrder = () => {
-    const {cartItems,shippingDetails, totalPrice, totalQuantities} = useStateContext();
-
+    const {cartItems,shippingDetails, totalPrice,user, totalQuantities} = useStateContext();
+    const router = useRouter();
+    useEffect(() => {
+       
+        if(!user && cartItems.length <= 0 && shippingDetails){
+             router.push('/Login?redirect=/shipping')
+        }
+    },[router,shippingDetails, user])
   return (
     <>
     <h2 className='order-header'>Order Details</h2>
