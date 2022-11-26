@@ -972,6 +972,24 @@ padding: 6px;
     align-items: center;
     font-size: 20px;
   }
+  .sidebar-footer{
+    margin-bottom: -50px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .sidebar-footer .name-sec{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+
+
   .navbar-container .sidebar .search-icon, .login-icon, .profile-icon{
   display: flex;
 }

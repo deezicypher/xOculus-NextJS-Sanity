@@ -1,8 +1,9 @@
 import React from 'react'
 import Link from 'next/link';
 import {BsSearch} from 'react-icons/bs';
-import {AiOutlineLogin, AiOutlineClose} from 'react-icons/ai';
+import {AiOutlineLogin, AiOutlineClose,AiFillGithub} from 'react-icons/ai';
 import {RiAccountPinCircleLine} from 'react-icons/ri';
+import Image from 'next/image';
 
 const Sidebar = ({setShowSearch,setShowSidebar}) => {
   return (
@@ -28,6 +29,14 @@ const Sidebar = ({setShowSearch,setShowSidebar}) => {
     </Link>
  
     </div>
+    <div className='sidebar-footer'>
+    <div className='name-sec'>
+        <Image src='/deezi-icon.png' alt='' width={30} height={30}/>
+        <Link href='https://github.com/deezitheviper'><small>DeeziTheViper</small></Link>
+        </div>
+        <AiFillGithub/>
+        
+   </div>
     </div>
 </div>
   )
