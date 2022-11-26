@@ -1,6 +1,6 @@
 export default {
-    name: 'orderItem',
-    title:'Order Item',
+    name: 'cartItem',
+    title:'Cart Item',
     type:'object',
     fields:[
         {

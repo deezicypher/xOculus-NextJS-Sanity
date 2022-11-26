@@ -5,8 +5,8 @@ import { isAuth } from "../../../utils/Token";
 export default async function handler (req, res) {
     
 if (req.method === "POST") {
-    if(isAuth(req,res)){
-       console.log(req.user)
+    if(await isAuth(req,res)){
+       
     }
 }else{
 

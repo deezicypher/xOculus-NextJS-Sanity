@@ -23,8 +23,8 @@ export default {
             type:'number'
         },
         {
-            name:'totalQuantity',
-            title:'Total Quantity',
+            name:'totalQuantities',
+            title:'Total Quantities',
             type:'number'
         },
         {
@@ -44,13 +44,13 @@ export default {
             type:'paymentResult'
         },
         {
-            name:'orderItems',
-            title:'Order Items',
+            name:'cartItems',
+            title:'Cart Items',
             type:'array',
             of:[
                 {
-                    title:'Order Item',
-                    type:'orderItem'
+                    title:'Cart Item',
+                    type:'cartItem'
                 }
             ]
         },
