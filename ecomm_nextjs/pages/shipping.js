@@ -29,7 +29,7 @@ const shipping = () => {
 
 
     const onSubmit = data => {
-        if(cartItems.length <= 0) {
+        if(cartItems?.length <= 0) {
           setShowCart(true)
         }else{
         Cookies.set('shippingDetails',JSON.stringify(data));
