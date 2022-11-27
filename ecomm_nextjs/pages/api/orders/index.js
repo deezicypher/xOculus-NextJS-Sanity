@@ -8,6 +8,7 @@ if (req.method === "POST") {
     
     
     if(isAuth(req,res)){
+        console.log(isAuth(req,res))
         const doc = {
             ...req.body, 
             orderedOn: new Date().toISOString(),

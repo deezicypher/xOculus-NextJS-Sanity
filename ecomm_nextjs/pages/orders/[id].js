@@ -4,51 +4,73 @@ import axios from 'axios';
 import moment from 'moment';
 import {GrPaypal} from 'react-icons/gr';
 import {FaStripeS} from 'react-icons/fa';
+import { useStateContext } from '../../context/stateContext';
+import toast from 'react-hot-toast';
+import { InfinitySpin } from 'react-loader-spinner';
 
 const orderdetails = ({params}) => {
-
+    const [loading , setLoading] = useState(false)
     const router = useRouter();
     const {method,success} = router.query;
     const {id} = params;
-    const {session_id} = router.query;
-    const [order, setOrder] = useState({});
+    const [order, setOrder] = useState();
+ 
+    const {shippingAddress,paymentMethod, orderItems, paid, paidOn, paymentResult,totalPrice,totalQuantities} = order?order:{};
+    const {user} = useStateContext();
 
-    const {shippingAddress,paymentMethod, orderItems, paid, paidOn, paymentResult,totalPrice,totalQuantities} = order;
-   
+
+
+
 
 useEffect(() => {
     
     const getOrder = async () => {
-       console.log(method === 'Stripe' && success === 'true' )
+       setLoading(true)
         if(method === 'Stripe' && success === 'true' ){
             try {
                
-                const res = await axios.get(`/api/orders/stripe/${id}`)
+                const res = await axios.get(`/api/orders/stripe/${id}`,{ headers: {"Authorization" : `Bearer ${user?.token}`} })
                 setOrder(res.data)
                  }catch(err){
                      console.log(err)
+                     setLoading(false)
+                     //toast.error("Order can't be processed at this moment")
+
                  }
     }else{
       
         try {
-            const res =  await axios.get(`/api/orders/${id}`)
+            setLoading(true)
+            const res =  await axios.get(`/api/orders/${id}`,{ headers: {"Authorization" : `Bearer ${user?.token}`} })
             setOrder(res.data)
              }catch(err){
                  console.log(err)
+                 setLoading(false)
+                 //toast.error("Order can't be processed at this moment")
              }
             
         }
     }
     getOrder()
     
-},[])
-  return (
+},[router, user])
+
+
+if(!order)return (
+   
+    <h6 className='checkout-header'>.... </h6>
+
+)
+
+    return (
    
     
 
  
     <div>
-     
+
+  
+        <>
       <h6 className='checkout-header'>Order Details</h6>
       <div className='product-detail-container'>
         
@@ -113,6 +135,7 @@ useEffect(() => {
                      
                 </div>
             </div>
+</>
 
 
     </div>

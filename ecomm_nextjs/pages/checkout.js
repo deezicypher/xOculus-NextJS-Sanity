@@ -9,7 +9,7 @@ import {PayPalButtons} from "@paypal/react-paypal-js";
 import {toast} from 'react-hot-toast';
 import getStripePromise from '../utils/getStripe';
 const checkout = () => {
-    const {cartItems,shippingDetails, totalPrice,user, totalQuantities} = useStateContext();
+    const {cartItems,shippingDetails,orderProcessed, totalPrice,user, totalQuantities} = useStateContext();
     const router = useRouter();
     const style = {"layout":"vertical"};
    

@@ -148,6 +148,16 @@ export const StateContext = ({children}) => {
 
       };
 
+    const orderProcessed = () => {
+        Cookies.remove('cartItems')
+        Cookies.remove('totalPrice')
+        Cookies.remove('totalQty')
+        Cookies.remove('shippingDetails')
+        setCartItems([])
+        setTotalPrice(0)
+        setTotalQuantities(0)
+        setShippingDetails({})
+    }
 
     useEffect(() => {
         setShowSearch(false)
@@ -193,6 +203,7 @@ export const StateContext = ({children}) => {
                 updateCartItemQuantity,
                 removeFromCart,
                 setShippingDetails,
+                orderProcessed,
                 logout
             }}
         >
