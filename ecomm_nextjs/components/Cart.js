@@ -5,7 +5,7 @@ import { useStateContext } from '../context/stateContext';
 import {BiArrowBack} from 'react-icons/bi';
 import {FiShoppingCart} from 'react-icons/fi';
 import {AiFillMinusCircle,AiFillPlusCircle,AiOutlineDelete} from 'react-icons/ai';
-import getStripePromise from '../utils/getStripe';
+
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
@@ -15,23 +15,7 @@ const Cart = () => {
 
   const router = useRouter();
 
-  const handleStripe = async () => {
-      const stripe = await getStripePromise();
-      const response = await fetch('/api/stripe/',{
-        method: 'POST',
-        headers:{
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({cartItems}),
-      })
 
-      if(response.statusCode === 500) return;
-
-      const data = await response.json();
-      toast.loading('Redirecting...');
-      stripe.redirectToCheckout({sessionId: data.id})
-
-  }
 
   const handleCheckOut = () => {
     if(!user){
