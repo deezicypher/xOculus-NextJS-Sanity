@@ -39,8 +39,10 @@ const checkout = () => {
         }
         try {
         const res = await axios.post('/api/orders/',doc,{ headers: {"Authorization" : `Bearer ${user.token}`} })
+        if(method === 'PayPal'){
         toast.success("Order has been successfully placed")
         router.push(`/orders/${res.data}`)
+        }
     }catch(err){
            console.log(err)
     }

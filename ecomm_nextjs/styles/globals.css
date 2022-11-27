@@ -567,6 +567,7 @@ text-align: end;
   overflow: auto;
 max-height: 70vh;
 padding: 20px 10px;
+flex-shrink: 0;
 }
 .product{
   display: flex;
@@ -749,10 +750,12 @@ padding: 30px 65px;
 
 .product-detail-desc h4{
   margin-top: 10px;
+  overflow-wrap: break-word;
 }
 .product-detail-desc p{
   margin-top: 10px;
   font-weight: light;
+  word-break: break-all
 }
 .reviews p{
   color: #324d67;

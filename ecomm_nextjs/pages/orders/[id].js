@@ -3,12 +3,12 @@ import {useRouter} from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
 import {GrPaypal} from 'react-icons/gr';
-
+import {FaStripeS} from 'react-icons/fa';
 
 const orderdetails = ({params}) => {
 
     const router = useRouter();
-    const {method,sucess} = router.query;
+    const {method,success} = router.query;
     const {id} = params;
     const {session_id} = router.query;
     const [order, setOrder] = useState({});
@@ -19,12 +19,12 @@ const orderdetails = ({params}) => {
 useEffect(() => {
     
     const getOrder = async () => {
-       
-        if(method === 'Stripe' && success === true ){
+       console.log(method === 'Stripe' && success === 'true' )
+        if(method === 'Stripe' && success === 'true' ){
             try {
+               
                 const res = await axios.get(`/api/orders/stripe/${id}`)
-                 console.log(res)
-                setOrders(orders)
+                setOrder(res.data)
                  }catch(err){
                      console.log(err)
                  }
@@ -32,7 +32,6 @@ useEffect(() => {
       
         try {
             const res =  await axios.get(`/api/orders/${id}`)
-            console.log(res)
             setOrder(res.data)
              }catch(err){
                  console.log(err)
@@ -48,7 +47,7 @@ useEffect(() => {
     
 
  
-    <div className='shipping'>
+    <div>
      
       <h6 className='checkout-header'>Order Details</h6>
       <div className='product-detail-container'>
@@ -76,7 +75,7 @@ useEffect(() => {
 }
         </div>
 
-                <div className='product-detail-desc order-details'>
+                <div className='product-detail-desc'>
                     
                    
                         
@@ -91,7 +90,7 @@ useEffect(() => {
                     <br/>
                     <hr/>
                         <h4 className='order-sub-header'>{paymentMethod} Payment Details: </h4>
-                        <p>Payment Method: <span className='orderD'><GrPaypal/>{" "} {paymentMethod}</span></p>
+                        <p>Payment Method: <span className='orderD'>{method == "Stripe"?<FaStripeS/> : <GrPaypal/>}{" "} {paymentMethod}</span></p>
                         <p>Email: <span className='orderD'>{paymentResult?.email}</span></p>
                         <p>Payment Id: <span className='orderD'>{paymentResult?.id}</span></p>
                         <p>Paid On: <span className='orderD'>{moment(paidOn).format('MMMM Do YYYY, h:mm')}</span></p>
