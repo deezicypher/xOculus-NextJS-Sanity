@@ -77,7 +77,6 @@ const Register = () => {
         {errors.name && <p className='form-error' role="alert">{errors.name?.message}</p>}
 
         <input
-        onBlur={e => verifySignup(e.target.value)}
         placeholder='Name'
   {...register("name")}
 />
