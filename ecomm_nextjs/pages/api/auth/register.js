@@ -27,8 +27,8 @@ export default async function  (req, res) {
         res.status(500).json("Unable to proceed further at the moment")
     }
 }else{
-      // Handle any other HTTP method
-      res.status(405).end();
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method Not Allowed');
 
   }
 }
