@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import { useStateContext } from '../context/stateContext'
 import { urlFor } from '../utils/client';
-import {GrPaypal} from 'react-icons/gr';
+
 import {FaStripeS} from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import {PayPalButtons} from "@paypal/react-paypal-js";
 import {toast} from 'react-hot-toast';
-
+import getStripePromise from '../utils/getStripe';
 const checkout = () => {
     const {cartItems,shippingDetails, totalPrice,user, totalQuantities} = useStateContext();
     const router = useRouter();
@@ -15,7 +15,7 @@ const checkout = () => {
    
 
     const onPlace = async (method,paymentResult) => {
-        let {orderedOn,...data }= paymentResult;
+        let {orderedOn,paid,...data }= paymentResult;
         const orderItems = cartItems.map(product => ( 
                {
                 _key: product._id,
@@ -35,11 +35,12 @@ const checkout = () => {
         const doc ={shippingAddress:shippingDetails,totalPrice,totalQuantities,orderItems,paymentMethod:method,
             paymentResult:data,
             paidOn:orderedOn,
-            paid:true,
+            paid:paid,
         }
         try {
-        await axios.post('/api/orders/',doc,{ headers: {"Authorization" : `Bearer ${user.token}`} })
-           toast.success("Order has been successfully placed")
+        const res = await axios.post('/api/orders/',doc,{ headers: {"Authorization" : `Bearer ${user.token}`} })
+        toast.success("Order has been successfully placed")
+        router.push(`/orders/${res.data}`)
     }catch(err){
            console.log(err)
     }
@@ -70,11 +71,12 @@ const checkout = () => {
             const doc = {
                 email:payer.email_address,
                 id:id,
-                status:status,
-                orderedOn:update_time
+                status:'Processing',
+                orderedOn:update_time,
+                paid:true
             }
             try{
-                await onPlace('PayPal',doc)
+             await onPlace('PayPal',doc);
                
             }catch(err){
                 console.log(err)
@@ -83,6 +85,27 @@ const checkout = () => {
         });
     }
 
+    const handleStripe = async () => {
+        try{
+        const stripe = await getStripePromise();
+        const response = await axios.post('/api/stripe/',{cartItems})
+        const {id} = response.data;
+        const doc = {
+            id:id,
+            status:"Processing",
+            orderedOn: new Date().toISOString(),
+        }
+        onPlace('Stripe',doc) 
+        toast.loading('Redirecting...');
+        stripe.redirectToCheckout({sessionId:id})
+
+        }catch(err){
+            console.log(err)
+        }
+     
+     
+  
+    }
 
     useEffect(() => {
       
@@ -141,7 +164,7 @@ const checkout = () => {
                                 <button 
                                 type="button"
                                 className='stripe-btn'
-                                onClick={() => onPlace()}
+                                onClick={() => handleStripe()}
                                 >
                                 <FaStripeS/> {" "}  Stripe
                                 </button>

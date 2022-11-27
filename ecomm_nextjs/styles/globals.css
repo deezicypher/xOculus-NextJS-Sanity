@@ -728,13 +728,21 @@ padding: 30px 65px;
   margin: 40px 0px;
  color: #324d67;
 }
+.confirmed{
+  color: rgb(49 168 49);
+}
+
+.processing{
+  color: coral;
+}
+
 .order-sub-header{
   margin-bottom: 30px;
 }
 .orderD{
   font-size: 18px;
   color: #153359;
-  font-weight: 500;
+  font-weight: 400;
   margin-left: 10px;
   text-transform: capitalize;
 }

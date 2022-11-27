@@ -20,7 +20,7 @@ if (req.method === "POST") {
         };
         try{
         const result = await client.create(doc)
-        res.status(201).json("Hit status")
+        res.status(201).json(result._id)
         }catch(err){
             console.log(err)
         }

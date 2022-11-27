@@ -31,9 +31,9 @@ export default async function handler (req, res) {
                   name: product.name,
                   images:[newImage]
                 },
-                unit_amount: product.price * 100,
+                unit_amount:Math.round(product.price * 100),
               },
-              adjustable_quantity: {
+              adjustable_quantity: { 
                 enabled:true,
                 minimum:1,
               },
@@ -41,14 +41,14 @@ export default async function handler (req, res) {
              }
             }),
             mode: 'payment',
-            success_url: `${req.headers.origin}/?success=true`,
+            success_url: `${req.headers.origin}/orders/{CHECKOUT_SESSION_ID}?success=true&method=Stripe`,
             cancel_url: `${req.headers.origin}/?canceled=true`,
           });
 
           
           res.status(200).json(session)
+          //res.redirect(303, session.url)
 
-          //res.redirect(303, session.url);
         } catch (err) {
           res.status(err.statusCode || 500).json(err.message);
         }
