@@ -33,6 +33,7 @@ export default {
             name: 'isAdmin',
             title: 'Is Admin',
             type: 'boolean',
+            default: false,
         }
     ]
 }
