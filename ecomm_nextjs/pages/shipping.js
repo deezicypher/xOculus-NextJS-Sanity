@@ -34,7 +34,7 @@ const shipping = () => {
         }else{
         Cookies.set('shippingDetails',JSON.stringify(data));
         setShippingDetails(data)
-        router.push('/placeorder')
+        router.push('/checkout')
         }
     }
 

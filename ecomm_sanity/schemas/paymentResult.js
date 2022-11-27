@@ -14,7 +14,7 @@ export default {
             type:'string'
         },
         {
-            name:'email_address',
+            name:'email',
             title:'Email Address',
             type:'string'
         }

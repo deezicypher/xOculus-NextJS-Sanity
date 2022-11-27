@@ -1,30 +1,93 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useStateContext } from '../context/stateContext'
 import { urlFor } from '../utils/client';
 import {GrPaypal} from 'react-icons/gr';
 import {FaStripeS} from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import {PayPalButtons} from "@paypal/react-paypal-js";
+import {toast} from 'react-hot-toast';
 
 const checkout = () => {
     const {cartItems,shippingDetails, totalPrice,user, totalQuantities} = useStateContext();
     const router = useRouter();
+    const style = {"layout":"vertical"};
+   
 
-
-
-    const onPlace = async () => {
+    const onPlace = async (method,paymentResult) => {
+        let {orderedOn,...data }= paymentResult;
+        const orderItems = cartItems.map(product => ( 
+               {
+                _key: product._id,
+                product:{
+                    _type:'reference',
+                    _ref: product._id
+                },
+                name:product.name,
+                image:urlFor(product.image[0]).url(),
+                price:product.price,
+                quantity:product.quantity,
+                
+            }
+       
+        ))
+       
+        const doc ={shippingAddress:shippingDetails,totalPrice,totalQuantities,orderItems,paymentMethod:method,
+            paymentResult:data,
+            paidOn:orderedOn,
+            paid:true,
+        }
         try {
-            const res = await axios.post('/api/orders/',{},{ headers: {"Authorization" : `Bearer ${user.token}`} })
-            console.log(res.data)
+        await axios.post('/api/orders/',doc,{ headers: {"Authorization" : `Bearer ${user.token}`} })
+           toast.success("Order has been successfully placed")
     }catch(err){
-        console.log(err)
+           console.log(err)
     }
     }
+
+
+    const createOrder =  (data, actions) => {
+        return actions.order.create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        value: totalPrice,
+                                    },
+                                },
+                            ],
+                        })
+                        .then((orderId) => {
+                         
+                            return orderId;
+                        })
+    }
+
+    const onApprove = (data, actions) => {
+        return actions.order.capture().then(async function (details) {
+            const {payer,id,status,update_time
+,                } = details
+           
+            const doc = {
+                email:payer.email_address,
+                id:id,
+                status:status,
+                orderedOn:update_time
+            }
+            try{
+                await onPlace('PayPal',doc)
+               
+            }catch(err){
+                console.log(err)
+                toast.error("Payment failed, try again later")
+            }
+        });
+    }
+
 
     useEffect(() => {
       
         if(!shippingDetails){
-            router.push('/shipping')
+         router.push('/Login?redirect=/shipping')
         }
         if(cartItems?.length <= 0 ){
             router.push('/shipping')
@@ -33,7 +96,7 @@ const checkout = () => {
 
   return (
     <>
-    <h2 className='order-header'>Check Out</h2>
+    <h2 className='checkout-header'>Check Out</h2>
     <div className='product-detail-container'>
         
             <div className='product-container'>
@@ -74,6 +137,7 @@ const checkout = () => {
                          
                            
                             <div className='order-buttons'>
+                                <div>
                                 <button 
                                 type="button"
                                 className='stripe-btn'
@@ -81,16 +145,16 @@ const checkout = () => {
                                 >
                                 <FaStripeS/> {" "}  Stripe
                                 </button>
-                                <button 
-                                type="button"
-                                className='buy-now'
-                                
-                                >
-
-                                <GrPaypal/>{" "} Paypal
-                                </button>
+                                </div>
+                                <div  className="paypal-btn">
+                                <PayPalButtons 
+                            createOrder={createOrder}
+                            onApprove={onApprove}
+                            />
                                 
                             </div>
+                            </div>
+                  
                       
                          
                     </div>

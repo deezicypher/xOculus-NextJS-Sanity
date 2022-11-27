@@ -721,9 +721,9 @@ padding: 30px 65px;
 .order-details h1{
   margin-bottom: 20px;
 }
-.order-header{
+.checkout-header{
   font-size: 40px;
-  font-weight: 800;
+  font-weight: light;
   text-align: center;
   margin: 40px 0px;
  color: #324d67;
@@ -820,8 +820,11 @@ padding: 30px 65px;
   transition: transform 0.5s ease;
   border-radius: 6px;
 }
-.stripe-btn :hover{
+.stripe-btn:hover{
   transform:scale(1.1,1.1)
+}
+.paypal-btn{
+  margin-top: 40px;
 }
 
 .buttons .buy-now{

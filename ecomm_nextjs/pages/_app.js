@@ -6,8 +6,8 @@ import Layout from '../components/Layout';
 import {StateContext} from '../context/stateContext';
 import {Toaster} from 'react-hot-toast';
 import {InfinitySpin} from 'react-loader-spinner';
-
-
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+const { NEXT_PAYPAL_CLIENT_ID } = process.env;
 
 
 
@@ -44,13 +44,17 @@ function Loading(){
 
 function MyApp({ Component, pageProps }) {
   return (
+    <PayPalScriptProvider deferLoading={false} options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}}>
 <StateContext>  
   <Layout>
     <Loading/>
     <Toaster/>
+   
    <Component {...pageProps} />
+  
   </Layout>
   </StateContext>
+  </PayPalScriptProvider>
   )
 }
 
