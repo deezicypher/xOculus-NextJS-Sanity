@@ -110,8 +110,10 @@ const checkout = () => {
     }
 
     useEffect(() => {
-      
-        if(!shippingDetails){
+        if(!user?._id){
+            router.push('/Login?redirect=/checkout')
+        }
+        if(!shippingDetails?.address){
          router.push('/Login?redirect=/shipping')
         }
         if(cartItems?.length <= 0 ){
