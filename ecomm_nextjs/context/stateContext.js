@@ -142,7 +142,6 @@ export const StateContext = ({children}) => {
     const checkTokenExpiration = () => {
         const token = user.token
         if(token){
-            console.log(token,jwtDecode(token),jwtDecode(token).exp < Date.now() / 1000)
         if (jwtDecode(token).exp < Date.now() / 1000) {
          logout('Login');
         }}

@@ -21,7 +21,7 @@ export default {
         {
             name:'postalcode',
             title:'Postal Code',
-            type:'string',
+            type:'number',
         },
         {
             name:'country',

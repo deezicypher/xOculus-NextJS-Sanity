@@ -27,8 +27,9 @@ function Loading(){
       router.events.off('routeChangeStart', handleStart);
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
+      setLoading(false)
   }
-  })
+  },)
   return loading && (
     <div className="spinner-wrapper">
           <InfinitySpin  className="spinner"

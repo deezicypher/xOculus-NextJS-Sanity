@@ -14,7 +14,7 @@ export default {
         },
         {
             name:'name',
-            title:'Full Name',
+            title:'Name',
             type:'string'
         },
         {
@@ -44,13 +44,13 @@ export default {
             type:'paymentResult'
         },
         {
-            name:'cartItems',
-            title:'Cart Items',
-            type:'array',
+            name:'orderItems',
+            title:'Order Items',
+            type: 'array',
             of:[
                 {
-                    title:'Cart Item',
-                    type:'cartItem'
+                    title:'Order Item',
+                    type:'orderItem'
                 }
             ]
         },

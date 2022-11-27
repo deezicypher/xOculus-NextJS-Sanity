@@ -41,7 +41,7 @@ const shipping = () => {
 
 
     useEffect(() => {
-      if(cartItems.length <= 0){
+      if(cartItems?.length <= 0){
         setShowCart(true)
       }
        if (user){
@@ -54,7 +54,7 @@ const shipping = () => {
        router.push('/Login?redirect=/shipping')
        }
 
-    }, [router,setValue,shippingDetails,user])
+    }, [router,setValue,shippingDetails,user,cartItems])
 
   return (
     <div className='shipping-card'>

@@ -12,24 +12,41 @@ const placeOrder = () => {
 
 
 
-    const onPlace = async () => {
+    const onPlace = async (method) => {
+        const orderItems = cartItems.map(product => ( 
+               {
+                _key: product._id,
+                product:{
+                    _type:'reference',
+                    _ref: product._id
+                },
+                name:product.name,
+                image:urlFor(product.image[0]).url(),
+                price:product.price,
+                quantity:product.quantity,
+                paymentMethod:method
+            }
+       
+        ))
+       
+        const doc ={shippingAddress:shippingDetails,totalPrice,totalQuantities,orderItems}
         try {
-            const res = await axios.post('/api/orders/',{},{ headers: {"Authorization" : `Bearer ${user.token}`} })
-            console.log(res.data)
+           const res = await axios.post('/api/orders/',doc,{ headers: {"Authorization" : `Bearer ${user.token}`} })
+           console.log(res)
     }catch(err){
-        console.log(err)
+           console.log(err)
     }
     }
 
     useEffect(() => {
-        if( cartItems.length <= 0 ){
+        if( cartItems?.length <= 0 ){
              router.push('/shipping')
        }
         if(!shippingDetails){
          router.push('/Login?redirect=/shipping')
         }
       
-    },[router,shippingDetails, user])
+    },[router,shippingDetails,cartItems])
 
     if(!shippingDetails ) return <h2 className='order-header'>.....</h2>
   return (
@@ -78,7 +95,7 @@ const placeOrder = () => {
                                 <button 
                                 type="button"
                                 className='stripe-btn'
-                                onClick={() => onPlace()}
+                                onClick={() => onPlace('Stripe')}
                                 >
                                 <FaStripeS/> {" "}  Stripe
                                 </button>

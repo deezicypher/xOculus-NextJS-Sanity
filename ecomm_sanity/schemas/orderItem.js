@@ -1,8 +1,17 @@
 export default {
-    name: 'cartItem',
-    title:'Cart Item',
+    name: 'orderItem',
+    title:'Order Item',
     type:'object',
     fields:[
+        {
+            name: 'product',
+            title: 'Product',
+            type: 'reference',
+            to:[{type: 'product'}],
+            options:{
+                disableNew: true,
+            }
+        },
         {
             name:'name',
             title:'Name',
@@ -11,7 +20,7 @@ export default {
         {
             name:'quantity',
             title:'Quantity',
-            type:'string',
+            type:'number',
 
         },
         {
