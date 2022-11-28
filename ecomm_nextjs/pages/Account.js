@@ -145,11 +145,11 @@ useEffect(() => {
 },[user])
   
 
-    if(!user) {
-        return (
-        <h6 className='checkout-header'>.... </h6>
-    )
-        }else{
+if(!user)return (
+   
+    <h6 className='checkout-header'>.... </h6>
+
+)
   return (
     <div className='account-page'>
         <h3 className='account-header'>My Account </h3>
@@ -228,7 +228,6 @@ useEffect(() => {
 
 </div>
   )
-}
 }
 
 export default Account

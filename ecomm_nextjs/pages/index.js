@@ -1,7 +1,7 @@
 import React from 'react'
 import {HeroBanner, Footer, Product, FooterBanner} from '../components/index.js'
 import {client, urlFor} from '../utils/client.js'
-
+import Link from 'next/link.js'
 
 const Home = ({products,bannerData}) => {
 
@@ -13,24 +13,21 @@ const Home = ({products,bannerData}) => {
    <HeroBanner heroBanner={bannerData.length && bannerData[1]}/>
 
 
-    {products.map(product => (
-      //console.log(urlFor(product.image).url())
-      //console.log(urlFor(product.image[0]).url())
-      <></>
-    ))
-    }
+
    <div className='products-heading'>
     <h2 >Explore the world of Oculus</h2> 
     <br/>
     <p>Discover</p>
    </div>
 
-   <div className='products-container'>
+   <div className='products-container '>
     {products.map((product,i) => (
       <Product key={i} product={product}/>
     ))}
    </div>
-
+   <Link href="/products" className='pagination all-btn'>
+       View all Products
+    </Link>
    <FooterBanner footerData={bannerData.length && bannerData[0]}/>
    </div>
   )

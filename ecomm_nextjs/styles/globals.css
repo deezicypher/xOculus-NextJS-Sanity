@@ -9,6 +9,7 @@ body, * {
   box-sizing: border-box;
 
 }
+
 ::-webkit-scrollbar {
   width: 0px;
 }
@@ -325,6 +326,14 @@ width: 100%;
   margin-top: 100px;
   gap: 50px;
 }
+.all-btn{
+cursor: pointer;
+}
+
+.scroll-page{
+  max-height: 100vh;
+  overflow: auto;
+}
 
 .order-list{
   display: flex;
@@ -345,7 +354,14 @@ width: 100%;
   text-align: left;
 }
 
-
+.pagination{
+  margin-top: 60px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-content: center;
+  
+}
 
 .order-list-btn{
   background-color: #153359;
