@@ -9,6 +9,9 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
   - Search Functionality
   - Add Items to Cart
   - Check Out  (Stripe and PayPal) 
+  To test payment gateway
+   ~ make use of https://stripe.com/docs/testing for payment details
+   and paypal sandbox account details
   ```
 ## Visuals
 #### Home Page
