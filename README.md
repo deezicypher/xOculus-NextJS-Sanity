@@ -15,7 +15,7 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
   ```
 ## Visuals
 #### Home Page
-![Screengrab](/screens/Home.png) 
+![Screengrab](/screens/home.png) 
 
 #### Products Page
 ![Screengrab](/screens/products.png) 
@@ -24,10 +24,10 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
 ![Screengrab](/screens/search.png) 
 
 #### Product Details Page
-![Screengrab](/productdetails.png) 
+![Screengrab](/screens/productdetails.png) 
 
 #### Cart Page
-![Screengrab](/cart.png) 
+![Screengrab](/screens/cart.png) 
 
 #### Login Page
 ![Screengrab](/screens/login.png) 
@@ -35,8 +35,6 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
 #### Signup Page
 ![Screengrab](/screens/signup.png) 
 
-#### Shipping Details Page
-![Screengrab](/screens/shipdetails.png) 
 
 #### Shipping Details Page
 ![Screengrab](/screens/shipdetails.png) 
