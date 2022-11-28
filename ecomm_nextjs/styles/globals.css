@@ -325,6 +325,43 @@ width: 100%;
   margin-top: 100px;
   gap: 50px;
 }
+
+.order-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  max-height: 600px;
+  overflow: scroll;
+  border: 3px solid #153359;
+  border-radius: 10px;
+  padding: 0px 10px;
+}
+.pItem{
+  display: flex;
+  justify-self: flex-start;
+  align-self: flex-start;
+  text-align: left;
+}
+.order-list-btn{
+  background-color: #153359;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.list-items{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin-top: 50px;
+
+}
+
+
+
 .auth-form .form-heading{
   text-align: center;
 }
@@ -761,6 +798,7 @@ padding: 30px 65px;
   display: flex;
   gap: 10px;
   font-size: larger;
+  cursor: pointer;
 }
 
 .account-btns .active-tab{

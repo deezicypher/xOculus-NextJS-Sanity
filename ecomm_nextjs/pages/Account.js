@@ -10,10 +10,15 @@ import { useRouter } from 'next/router';
 import { client } from '../utils/client';
 import { signToken } from '../utils/Token';
 import Cookies from 'js-cookie';
+import moment from 'moment';
+import {AiOutlineFileText} from 'react-icons/ai';
+import Link from 'next/link';
+
 
 const Account = () => {
     const [activeTab, setActiveTab] = useState('Profile');
     const {user, setUser} = useStateContext();
+    const [orders, setOrders] = useState([])
     const router = useRouter();
 
     const formSchema = yup.object().shape({
@@ -94,6 +99,12 @@ const Account = () => {
 
     }
 }
+
+  
+    
+
+
+
     useEffect(()=>{
         if(activeTab === "Profile"){
             const profile = async () => {
@@ -110,13 +121,15 @@ const Account = () => {
                 }
             }
             profile()
-        }else{
+        }
+        else if(activeTab === "Orders"){
             const orders = async () => {
                 try {
                     const res = await axios.get(`/api/profile/orders/${user?._id}`,{headers:{
                         "Authorization": `Bearer ${user?.token}`
                     }})
                     console.log(res.data)
+                    setOrders(res.data)
                 }catch(err){
                     console.log(err)
                 }
@@ -141,18 +154,19 @@ useEffect(() => {
     <div className='account-page'>
         <h3 className='account-header'>My Account </h3>
         <div className='account-btns'>
-            <btn type="btn" className={activeTab == 'Profile'? 'account-btn active-tab ':'account-btn'}>
+            <btn type="btn" onClick={() => setActiveTab('Profile')}  className={activeTab == 'Profile'? 'account-btn active-tab ':'account-btn'}>
               <AiFillSetting/> Profile
             </btn>
-            <btn type="btn" className={activeTab == 'Orders'? 'account-btn active-tab ':'account-btn'}>
+            <btn type="btn" onClick={() => setActiveTab('Orders')} className={activeTab == 'Orders'? 'account-btn active-tab ':'account-btn'}>
                <AiOutlineFile/> Orders
             </btn>
         </div>
 
         <div className='account-content'>
+            {activeTab == 'Profile' && (
         <div className="auth-form">
  
-     <form onSubmit={handleSubmit(onSubmit)}>
+             <form onSubmit={handleSubmit(onSubmit)}>
      {errors.name && <p className='form-error' role="alert">{errors.name?.message}</p>}
 
      <input
@@ -187,8 +201,27 @@ useEffect(() => {
 />
 
 <input className='form-btn' value="Update"  type="submit" />
-     </form>
- </div>
+             </form>
+        </div>
+            )}
+
+{activeTab == 'Orders' && (
+        <div className="order-list">
+            {orders?.map(order => (
+                <div className="list-items">
+                    <AiOutlineFileText/>
+                    <p className='pItem' >
+                    {order._id}
+                   </p>
+                   <p className='pItem' >{moment(order.orderedOn).format('MMMM Do YYYY, h:mm')}</p>
+                   <p className='pItem' >{order.paymentResult.status}</p>
+                   <p className='pItem' >{order.totalPrice}</p>
+                   <p className='pItem' >{order.totalQuantities}</p>
+                    <Link href='/' className="order-list-btn">View Details</Link>
+                </div>
+            ))}
+        </div>
+            )}
         </div>
 
 </div>
