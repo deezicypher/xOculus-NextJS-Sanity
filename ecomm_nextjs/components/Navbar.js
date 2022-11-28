@@ -22,7 +22,7 @@ const Navbar = () => {
       <p className='logo'>
         <Link href='/'>
        <Image src='/logo.png' alt='' width="35" height="25" />
-       {" "}Oculux
+       {" "}x-Oculus
         </Link>
       </p>
      

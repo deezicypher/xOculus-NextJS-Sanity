@@ -29,7 +29,7 @@ const Search = () => {
     <div className='search-wrapper' >
         <div className='search-container'>
         <div className="search-heading">
-        <span className='heading'>Search Oculux Store</span>
+        <span className='heading'>Search xOculus Store</span>
         <p><FaTimes fontSize={30} className="cancel-search" onClick={() => setShowSearch(false)}/></p>
         </div>
         <div className='search-sec'>
