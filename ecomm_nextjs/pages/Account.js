@@ -217,7 +217,7 @@ if(!user)return (
                    </p>
                    <p className='pItem' >{moment(order.orderedOn).format('MMMM Do YYYY, h:mm')}</p>
                    <p className='pItem' >{order.paymentResult.status}</p>
-                   <p className='pItem' >{order.totalPrice}</p>
+                   <p className='pItem' >${order.totalPrice}</p>
                    <p className='pItem' >{order.totalQuantities}</p>
                     <Link href={`/orders/${order._id}`} className="order-list-btn">View Details</Link>
                 </div>
