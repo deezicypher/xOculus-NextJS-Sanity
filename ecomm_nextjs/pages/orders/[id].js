@@ -37,7 +37,20 @@ useEffect(() => {
                      //toast.error("Order can't be processed at this moment")
 
                  }
-    }else{
+    }else if (method === 'Stripe'){
+        try {
+               
+            const res = await axios.get(`/api/orders/stripe/${id}`,{ headers: {"Authorization" : `Bearer ${user?.token}`} })
+            setOrder(res.data)
+             }catch(err){
+                 console.log(err)
+                 setLoading(false)
+                 //toast.error("Order can't be processed at this moment")
+
+             }
+    }
+    
+    else{
       
         try {
             setLoading(true)

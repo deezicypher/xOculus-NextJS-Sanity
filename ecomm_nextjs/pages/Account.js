@@ -207,6 +207,8 @@ useEffect(() => {
 
 {activeTab == 'Orders' && (
         <div className="order-list">
+             
+   
             {orders?.map(order => (
                 <div className="list-items">
                     <AiOutlineFileText/>
@@ -217,7 +219,7 @@ useEffect(() => {
                    <p className='pItem' >{order.paymentResult.status}</p>
                    <p className='pItem' >{order.totalPrice}</p>
                    <p className='pItem' >{order.totalQuantities}</p>
-                    <Link href='/' className="order-list-btn">View Details</Link>
+                    <Link href={`/orders/${order._id}`} className="order-list-btn">View Details</Link>
                 </div>
             ))}
         </div>

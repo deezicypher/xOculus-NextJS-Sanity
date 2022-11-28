@@ -20,7 +20,7 @@ const Sidebar = ({setShowSearch,setShowSidebar, user}) => {
    <BsSearch fontSize={30} />{" "} Search
 </div>
 {_id && (
-<Link href={`/account/${_id}`} > 
+<Link href={`/Account`} > 
 <div className=' link'>
       <RiAccountPinCircleLine className='profile-icon' fontSize={30}/><span className='account-name'>{name}</span>
       </div>

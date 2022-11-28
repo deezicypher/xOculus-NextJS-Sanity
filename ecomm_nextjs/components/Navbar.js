@@ -38,7 +38,7 @@ const Navbar = () => {
           <BsSearch />
       </div>
       {_id && (
-      <Link href={`/account/${_id}`} >
+      <Link href={`/Account`} >
         <RiAccountPinCircleLine className='profile-icon' fontSize={25}/>
       </Link>
       )

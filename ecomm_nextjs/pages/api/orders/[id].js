@@ -8,7 +8,7 @@ export default async function (req, res){
            
             try{
                 const result = await client.fetch(`*[_type == "order" && _id == "${id}"][0]`)
-               res.status(200).json(result);
+                res.status(200).json(result);
             }catch(err){
                 console.log(err)
             }
