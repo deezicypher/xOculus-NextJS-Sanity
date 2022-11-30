@@ -15,50 +15,50 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
   ```
 ## Visuals
 
-#### Home Page
+## Home Page
 ![Screengrab](/screens/home.png) 
 
 
 
-#### Products Page
+## Products Page
 ![Screengrab](/screens/products.png) 
 
 
 
-#### Search Page
+## Search Page
 ![Screengrab](/screens/search.png) 
 
 
 
 
-#### Product Details Page
+## Product Details Page
 ![Screengrab](/screens/productdetails.png) 
 
-#### Cart Page
+## Cart Page
 ![Screengrab](/screens/cart.png) 
 
-#### Login Page
+## Login Page
 ![Screengrab](/screens/login.png) 
 
-#### Signup Page
+## Signup Page
 ![Screengrab](/screens/signup.png) 
 
 
-#### Shipping Details Page
+## Shipping Details Page
 ![Screengrab](/screens/shipdetails.png) 
 
-#### Checkout Page
+## Checkout Page
 ![Screengrab](/screens/checkout.png) 
 
-#### Stripe Checkout 
+## Stripe Checkout 
 ![Screengrab](/screens/stripe.png) 
 
-#### Order Details Page
+## Order Details Page
 ![Screengrab](/screens/orderdetails.png) 
 
-#### Account Page
+## Account Page
 ![Screengrab](/screens/account.png) 
 
-#### Account Orders
+## Account Orders
 ![Screengrab](/screens/account-orders.png) 
 
