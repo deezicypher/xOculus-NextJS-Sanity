@@ -240,11 +240,11 @@ width: 100%;
   transition: transform 0.5s ease;
 }
 
-.product-name{
+.product-card .product-name{
   font-weight: light;
   font-size: 12px;
+  max-width: 250px;
   text-align: center;
-  max-width: fit-content;
   margin-top: 5px;
 }
 .product-price{
@@ -328,6 +328,10 @@ width: 100%;
 }
 .all-btn{
 cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 60px;
 }
 
 .scroll-page{
@@ -433,8 +437,8 @@ cursor: pointer;
 position: absolute;
 right: 10%;
 bottom: 5%;
-width: 300px;
 line-height: 1.3;
+max-width: 300px;
 display: flex;
 flex-direction: column;
  color: rgb(247, 165, 107);
@@ -1086,6 +1090,9 @@ padding: 6px;
 .sidebar-wrapper{
   display: none;
 }
+
+
+
 @media screen and (max-width:800px) {
   .menu{
     margin-top: 5px;
@@ -1195,10 +1202,10 @@ padding: 6px;
     height: 560px;
   }
   .hero-banner-image{
-    width: 77%;
+    width: 57%;
     height: 62%;
-    top: -2%;
-    right: -6%;
+    top: 12%;
+    right: 10%;
     opacity: 40%;
   }
   .footer-banner-container{
@@ -1239,7 +1246,7 @@ padding: 6px;
     line-height: 1.3;
   }
   .hero-banner-container h1{
-    font-size: 40px;
+    font-size: 30px;
   }
  
  .hero-banner-container h3{
@@ -1252,6 +1259,7 @@ padding: 6px;
   }
   .desc{
    bottom: 20px;
+   padding-left: 10px;
   }
   .product-detail-container{
     flex-wrap: wrap;
