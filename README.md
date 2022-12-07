@@ -16,7 +16,7 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
 ## Visuals
 
 ## Home Page
-![Screengrab](/screens/home.png) 
+![Screengrab](/screens/xoculus.png) 
 
 
 
