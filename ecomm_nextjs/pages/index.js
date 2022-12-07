@@ -25,9 +25,11 @@ const Home = ({products,bannerData}) => {
       <Product key={i} product={product}/>
     ))}
    </div>
+   <div className='products-container '>
    <Link href="/products" className='all_btn'>
        View all Products
     </Link>
+    </div>
    <FooterBanner footerData={bannerData.length && bannerData[0]}/>
    </div>
   )
