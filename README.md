@@ -13,6 +13,8 @@ E-commerce web app with NEXTJS and Sanity Headless Content Management System
    ~ make use of https://stripe.com/docs/testing for payment details
    and paypal sandbox account details
   ```
+  - Persistent Cart Feature(You can push request)
+
 ## Visuals
 
 ## Home Page
