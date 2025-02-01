@@ -33,7 +33,7 @@ const Success = () => {
                 <p className="email-msg">Details has been sent to your inbox</p>
                 <p className="description">
                     For Questions and inquiries, please contact  
-                   <a className="email" href="mailto:deezitheviper@gmail.com">deezitheviper@gmail.com</a>
+                   <a className="email" href="mailto:deezicypher@gmail.com">deezicypher@gmail.com</a>
                 </p>
 
                 <Link href="/" >

@@ -44,7 +44,7 @@ const Sidebar = ({setShowSearch,setShowSidebar, user}) => {
     <div className='sidebar-footer'>
     <div className='name-sec'>
         <Image src='/deezi-icon.png' alt='' width={30} height={30}/>
-        <Link href='https://github.com/deezitheviper'><small>DeeziTheViper</small></Link>
+        <Link href='https://github.com/deezicypher'><small>Deezicypher</small></Link>
         </div>
         <AiFillGithub/>
         

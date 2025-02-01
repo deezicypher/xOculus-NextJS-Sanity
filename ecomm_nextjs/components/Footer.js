@@ -8,7 +8,7 @@ const Footer = () => {
         <p> 2022 xOculus All rights reserved </p>
         <p className='icons'>
         <AiFillGithub/>
-        </p><Link href='https://github.com/deezitheviper'><small>deezicypher</small></Link>
+        </p><Link href='https://github.com/deezicypher'><small>deezicypher</small></Link>
     </div>
   )
 }
